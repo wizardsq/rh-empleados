@@ -1,0 +1,47 @@
+Td {
+    white-space: nowrap;
+}
+
+nav {
+    display: flex;
+    justify-content: center;
+  }
+  
+  ul {
+    list-style: none;
+    display: flex;
+  }
+  li {
+    margin: 0 10px;
+    font-size: 20px; 
+    justify-content: space-between;
+  }
+  
+  button {
+    padding: 10px 20px;
+    border: none;
+    color: black;
+    font-size: 50px;
+    cursor: pointer;
+    outline: none;
+    
+  }
+
+  
+  
+  .current-page {
+    background-color: #78a7ee;
+  }
+
+  .select{
+    margin-left: 60%;
+    margin-top: -29px;
+    
+    
+  }
+  .pagination{
+    margin-left: 50%;
+    
+  }
+
+  
