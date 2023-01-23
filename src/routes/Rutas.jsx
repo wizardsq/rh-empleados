@@ -17,18 +17,14 @@ import { AuthGuard } from './AuthGuard'
 export const Rutas = () => {
 
   return (
-
-
     <Routes>
-
-
       <Route element={<AuthGuard />}>
         <Route element={<Layout />} >
           <Route path="/home" element={<Home />} />
           <Route path="/create" element={<CreateUs />} />
           <Route path="/createEmp" element={<Crearempleado />} />
           <Route path="/usuarios" element={<Empleados />} />
-         </Route> 
+        </Route>
       </Route>
       <Route index path="/" element={<Login />} />
     </Routes>
