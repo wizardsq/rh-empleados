@@ -19,7 +19,7 @@ import {
 } from '@chakra-ui/react';
 import { useState } from 'react';
 import { ViewIcon, ViewOffIcon } from '@chakra-ui/icons';
-
+import '../assets/css/createus.css'
 export const CreateUs = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [showPassword1, setShowPassword1] = useState(false);
@@ -44,6 +44,7 @@ export const CreateUs = () => {
       minH={'100%'}
       align={'center'}
       justify={'center'}
+      className='container'
     >
       <Stack spacing={8} mx={'auto'} maxW={'xl'} py={12} >
         <Stack align={'center'}>
