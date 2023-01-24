@@ -81,7 +81,7 @@ export const Login = () => {
                {/* <Checkbox>Remember me</Checkbox>  */}
               <Link color={'blue.500'}>Olvidaste la contraseña</Link>
             </Stack>
-            <Button onClick={HandleSubmit}  colorScheme={'blue'} variant={'solid'} style={{width: '80%', marginLeft: '8%'}}>
+            <Button type='submit' onClick={HandleSubmit}  colorScheme={'blue'} variant={'solid'} style={{width: '80%', marginLeft: '8%'}}>
               Iniciar Sessión
             </Button>
           </Stack>
