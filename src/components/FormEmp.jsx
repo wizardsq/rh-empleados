@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react'
-import { CreatEmp, UpdateEmp, DeleteEmp } from '../api/Empleados'
+import { CreatEmp, UpdateEmp, DeleteEmp, ActivEmp} from '../api/Empleados'
 
 import {
   Input,
@@ -50,48 +50,48 @@ export const FormEmp = ({ data }) => {
   const [Activo, setActivo] = useState(data.Activo ?? '')
 
 
-    useEffect(() => {
-      setNomina(data.Nomina ?? '');
-      setNombre(data.Nombre ?? '');
-      setNombres(data.Nombres ?? '');
-      setPrimerapellido(data.Primer_apellido ?? '')
-      setSegundoapellido(data.Segundo_apellido ?? '')
-      setCorreo(data.Correo ?? '')
-      setGenero(data.Genero ?? '')
-      setContrato(data.T_cont_administrativo ?? '')
-      setGrado(data.Grado_academico ?? '')
-      setRectoria(data.Rec_dependiente ?? '')
-      setFacultad(data.Fac_dept ?? '')
-      setCentro(data.Centro_trabajo ?? '')
-      setPuesto(data.Puesto ?? '')
-      setJefe(data.Jefe_inmediato ?? '')
-      setFecha(data.Fecha_Nacimiento ?? '')
-      setSeguroS(data.Num_seguro_s ?? '')
-      setCurp(data.Curp ?? '')
-      setNacionalidad(data.Nacionalidad ?? '')
-      setEstadoCivil(data.Estado_Civil ?? '')
-      setDireccion(data.Direccion ?? '')
-      setTelefono(data.Telefono ?? '')
-      setNivel1(data.Nivel1 ?? '')
-      setInstitucion1(data.Institucion_niv1 ?? '')
-      setTitulo1(data.Nombre_Titulo1 ?? '')
-      setNivel2(data.Nivel2 ?? '')
-      setInstitucion2(data.Institucion_niv2 ?? '')
-      setTitulo2(data.Nombre_Titulo2 ?? '')
-      setNivel3(data.Nivel3 ?? '')
-      setInstitucion3(data.Institucion_niv3 ?? '')
-      setTitulo3(data.Nombre_Titulo3 ?? '')
-      setTipoContrato(data.Tipo_contrato ?? '')
-      setEdad(data.Edad ?? '')
-      setAservicio(data.A_servicio ?? '')
-      setActivo(data.Activo ?? '')
+  useEffect(() => {
+    setNomina(data.Nomina ?? '');
+    setNombre(data.Nombre ?? '');
+    setNombres(data.Nombres ?? '');
+    setPrimerapellido(data.Primer_apellido ?? '')
+    setSegundoapellido(data.Segundo_apellido ?? '')
+    setCorreo(data.Correo ?? '')
+    setGenero(data.Genero ?? '')
+    setContrato(data.T_cont_administrativo ?? '')
+    setGrado(data.Grado_academico ?? '')
+    setRectoria(data.Rec_dependiente ?? '')
+    setFacultad(data.Fac_dept ?? '')
+    setCentro(data.Centro_trabajo ?? '')
+    setPuesto(data.Puesto ?? '')
+    setJefe(data.Jefe_inmediato ?? '')
+    setFecha(data.Fecha_Nacimiento ?? '')
+    setSeguroS(data.Num_seguro_s ?? '')
+    setCurp(data.Curp ?? '')
+    setNacionalidad(data.Nacionalidad ?? '')
+    setEstadoCivil(data.Estado_Civil ?? '')
+    setDireccion(data.Direccion ?? '')
+    setTelefono(data.Telefono ?? '')
+    setNivel1(data.Nivel1 ?? '')
+    setInstitucion1(data.Institucion_niv1 ?? '')
+    setTitulo1(data.Nombre_Titulo1 ?? '')
+    setNivel2(data.Nivel2 ?? '')
+    setInstitucion2(data.Institucion_niv2 ?? '')
+    setTitulo2(data.Nombre_Titulo2 ?? '')
+    setNivel3(data.Nivel3 ?? '')
+    setInstitucion3(data.Institucion_niv3 ?? '')
+    setTitulo3(data.Nombre_Titulo3 ?? '')
+    setTipoContrato(data.Tipo_contrato ?? '')
+    setEdad(data.Edad ?? '')
+    setAservicio(data.A_servicio ?? '')
+    setActivo(data.Activo ?? '')
   }, [data]);
 
-  useEffect(() =>{
+  useEffect(() => {
     const getRol = JSON.parse(localStorage.getItem('user'))
-    if(getRol['rol'] == 1) {
+    if (getRol['rol'] == 1) {
       setGetRol(true)
-    }else{
+    } else {
       setGetRol(false)
     }
   })
@@ -124,10 +124,17 @@ export const FormEmp = ({ data }) => {
     e.preventDefault()
     const id = data.id
     const Activo = 1
-    DeleteEmp({id, Activo})
+    DeleteEmp({ id, Activo })
 
   }
-  
+
+  const HandleActivEmp = async (e) => {
+    e.preventDefault()
+    const id = data.id
+    const Activo = 0
+    ActivEmp({id, Activo})
+  }
+
 
   return (
     <>
@@ -386,16 +393,32 @@ export const FormEmp = ({ data }) => {
                   <Input type="text" value={Aservicio || ""} onChange={((e) => setAservicio(e.target.value))} />
                 </FormControl>
               </Box>
-              { getrol && 
-              <>
-              <Box>
-                  <Button marginTop="18%" width={40} colorScheme='whatsapp' onClick={HandleSubmitEmp}>Guardar Empleado</Button>
-                </Box><Box>
-                    <Button marginTop="18%" width={40} colorScheme='telegram' onClick={HandleUpdateEmp}>Actualizar Empleado</Button>
-                  </Box><Box>
-                    <Button marginTop="18%" width={40} colorScheme='red' onClick={HandleDeletEmp}>Eliminar Empleado</Button>
-                  </Box>
-              </>
+              {getrol &&
+                <>
+                  {
+                    !data.Nomina ?
+                      <Box>
+                        <Button marginTop="18%" width={40} colorScheme='green' onClick={HandleSubmitEmp}>Guardar Empleado</Button>
+                      </Box>
+                      :
+                      <Box>
+                        <Button marginTop="18%" width={40} colorScheme='facebook' onClick={HandleUpdateEmp}>Actualizar Empleado</Button>
+                      </Box>
+                  }
+                  {
+                    data.Activo == 0 ?
+                      <Box>
+                        <Button marginTop="18%" width={40} colorScheme='red' onClick={HandleDeletEmp}>Eliminar Empleado</Button>
+                      </Box>
+                      : data.Activo == 1 ?
+                        <Box>
+                          <Button marginTop="18%" width={40} colorScheme='whatsapp' onClick={HandleDeletEmp}>Activar Empleado</Button>
+                        </Box>
+                        :
+                        <> </>
+                  }
+
+                </>
               }
             </HStack>
           </Stack>

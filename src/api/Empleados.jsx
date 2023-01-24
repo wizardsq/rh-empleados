@@ -58,3 +58,9 @@ export async function DeleteEmp({id, Activo}){
         Activo
     })
 }
+
+export async function ActivEmp({id, Activo}){
+    await axios.put(`${process.env.REACT_APP_URL}/activEmp/${id}`, {
+        Activo
+    })
+}
