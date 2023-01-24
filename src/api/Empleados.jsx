@@ -34,7 +34,13 @@ export async function CreatEmp({ Nomina, Nombre, Nombres, Primerapellido, Segund
         Nivel1, Institucion1, Titulo1, Nivel2, Institucion2, Titulo2, Nivel3, Institucion3, Titulo3, TipoContrato,
         Edad, Aservicio
     }).then(function (res) {
-        console.log(res.status)
+        if(res.status == 200){
+            alert('Empleado creado correctamente')
+            window.location.reload()
+        }else{
+            alert('Error al intentar crear el empleado')
+            console.log(res)
+        }
     })
 }
 
@@ -49,18 +55,40 @@ export async function UpdateEmp({ id, Nomina, Nombre, Nombres, Primerapellido, S
         Nivel1, Institucion1, Titulo1, Nivel2, Institucion2, Titulo2, Nivel3, Institucion3, Titulo3, TipoContrato,
         Edad, Aservicio
     }).then(function (res) {
-        console.log(res.status)
+        if(res.status == 200){
+            alert('Empleado Actualizado')
+            window.location.reload()
+        }else{
+            alert('Ocurrio un error al intentar Actualizar al empleado')
+        }
     })
 }
 
 export async function DeleteEmp({id, Activo}){
     await axios.put(`${process.env.REACT_APP_URL}/deleteEmp/${id}`, {
         Activo
+    }).then(function (res) {
+        if(res.status == 200){
+            alert('Usuario Eliminado')
+            window.location.reload()
+        }else{
+            alert('Ocurrio un error al intentar eliminar al empleado')
+            console.log(res)
+        }
     })
 }
 
 export async function ActivEmp({id, Activo}){
     await axios.put(`${process.env.REACT_APP_URL}/activEmp/${id}`, {
         Activo
+    }).then(function (res) {
+        console.log(res.status)
+        if(res.status == 200){
+            alert('Usuario Activado')
+            window.location.reload()
+        }else{
+            alert('Ocurrio un error al intentar Activar al empleado')
+            console.log(res)
+        }
     })
 }

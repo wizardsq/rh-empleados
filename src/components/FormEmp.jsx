@@ -412,7 +412,7 @@ export const FormEmp = ({ data }) => {
                       </Box>
                       : data.Activo == 1 ?
                         <Box>
-                          <Button marginTop="18%" width={40} colorScheme='whatsapp' onClick={HandleDeletEmp}>Activar Empleado</Button>
+                          <Button marginTop="18%" width={40} colorScheme='whatsapp' onClick={HandleActivEmp}>Activar Empleado</Button>
                         </Box>
                         :
                         <> </>
