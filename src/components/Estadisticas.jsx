@@ -19,7 +19,7 @@ export const Estadisticas = () => {
     const [data, setData] = useState([])
     useEffect(() => {
         const datos = async () => {
-            await axios.get('http://localhost:3001/api/info').then(function (res) {
+            await axios.get(`${process.env.REACT_APP_URL}/info`).then(function (res) {
                 setData(res.data)
             })
         }
