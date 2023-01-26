@@ -46,11 +46,10 @@
 
         &__indicator {
             position: absolute;
-            top: 0;
             left: 50%;
-            width: calc(99.5% );
-            background-color: #091023
-            ;
+            width: calc(95% );
+            background-color: #091023;
+            border-radius: 10px;
             z-index: -1;
             transform: translateX(-50%);
             transition: 0.3s ease-in-out;

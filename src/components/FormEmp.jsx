@@ -398,7 +398,7 @@ export const FormEmp = ({ data }) => {
                   {
                     !data.Nomina ?
                       <Box>
-                        <Button marginTop="18%" width={40} colorScheme='green' onClick={HandleSubmitEmp}>Guardar Empleado</Button>
+                        <Button marginTop="18%" width={40} colorScheme='green' onClick={HandleSubmitEmp}>Generar empleado</Button>
                       </Box>
                       :
                       <Box>
@@ -408,7 +408,7 @@ export const FormEmp = ({ data }) => {
                   {
                     data.Activo == 0 ?
                       <Box>
-                        <Button marginTop="18%" width={40} colorScheme='red' onClick={HandleDeletEmp}>Eliminar Empleado</Button>
+                        <Button marginTop="18%" width={40} colorScheme='red' onClick={HandleDeletEmp}>Desactivar empleado</Button>
                       </Box>
                       : data.Activo == 1 ?
                         <Box>

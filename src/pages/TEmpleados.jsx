@@ -15,6 +15,7 @@ import axios from 'axios';
 import { useState, useEffect } from 'react';
 import * as XLSX from 'xlsx'
 import '../assets/css/paginacion.css'
+import { RiFileExcel2Line } from "react-icons/ri";
 
 export const Crearempleado = () => {
   const [data, setData] = useState([])
@@ -104,10 +105,9 @@ export const Crearempleado = () => {
 
   return (
     <>
+      <Button key='exportexcel' rightIcon={<RiFileExcel2Line   size="24px" />} colorScheme='whatsapp' onClick={HandleExport}>Exportar a excel</Button>
       <TableContainer>
-
         <Table>
-
           <Thead>
             <Th key='Genero'>
               <FormLabel>Género :</FormLabel>
@@ -214,10 +214,6 @@ export const Crearempleado = () => {
                 <option value="DIR/ADM.">DIR/ADM.</option>
               </Select>
             </Th>
-            <Th>
-              <Button key='exportexcel' colorScheme='whatsapp' onClick={HandleExport}>Exportar excel</Button>
-            </Th>
-
             <Tr>
               {
                 header.map((name) => (
@@ -301,9 +297,9 @@ export const Crearempleado = () => {
             <Tr>
               <Td colSpan={header.length}>
                 <div className="pagination-container">
-                  <button disabled={currentPage === 1} onClick={() => setCurrentPage(currentPage - 1)}>Anterior</button>
-                  &nbsp; <span className='pag'>Página {currentPage} de {totalPages}</span> &nbsp;
-                  <button disabled={currentPage === totalPages} onClick={() => setCurrentPage(currentPage + 1)}>Siguiente</button>
+                  <Button colorScheme='facebook' disabled={currentPage === 1} onClick={() => setCurrentPage(currentPage - 1)}>Anterior</Button>
+                  &nbsp; <strong className='pag'>Página {currentPage} de {totalPages}</strong> &nbsp;
+                  <Button colorScheme='facebook' disabled={currentPage === totalPages} onClick={() => setCurrentPage(currentPage + 1)}>Siguiente</Button>
 
                   <Select width={70} value={perPage} onChange={(e) => setPerPage(e.target.value)}>
                     <option value={5}>5</option>
