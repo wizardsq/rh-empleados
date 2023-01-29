@@ -43,7 +43,7 @@ export const Empleados = () => {
     }
     const user = async () => {
       setIsLoading(true)
-      await axios.get(`${process.env.REACT_APP_URL}/empleados`).then(function (res) {
+      await axios.get(`${process.env.REACT_APP_URL}/Allempleados`).then(function (res) {
         setData(res.data)
         setIsLoading(false)
       })
@@ -51,6 +51,7 @@ export const Empleados = () => {
     user()
   }, [setData])
 
+  console.log(data)
   const handleCheckbox = () => {
     setShowInactive(!showInactive);
   }

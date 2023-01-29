@@ -26,7 +26,9 @@ export const Estadisticas = () => {
         datos()
 
     }, [setData])
-    console.log(data)
+    
+      console.log(data['Total de empleados'])
+
     return (
         <SimpleGrid columns={5} spacingX='40px' spacingY='20px'>
 

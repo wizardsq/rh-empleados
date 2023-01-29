@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react'
-import { CreatEmp, UpdateEmp, DeleteEmp, ActivEmp} from '../api/Empleados'
+import { CreatEmp, UpdateEmp, DeleteEmp, ActivEmp } from '../api/Empleados'
 
 import {
   Input,
@@ -9,9 +9,11 @@ import {
   FormLabel,
   HStack,
   Stack,
+  useToast
 }
   from '@chakra-ui/react'
 export const FormEmp = ({ data }) => {
+  
   //* estados de todas las variables del formulario
   const [getrol, setGetRol] = useState(false)
   const [Nomina, setNomina] = useState(data.Nomina ?? '')
@@ -48,6 +50,10 @@ export const FormEmp = ({ data }) => {
   const [Edad, setEdad] = useState(data.Edad ?? '')
   const [Aservicio, setAservicio] = useState(data.A_servicio ?? '')
   const [Activo, setActivo] = useState(data.Activo ?? '')
+  const [FechaR, setFechaR] = useState(data.FechaRetiro ?? '')
+  const [CausaR, setCausaR] = useState(data.CausaRetiro ?? '')
+  const toast = useToast()
+
 
 
   useEffect(() => {
@@ -85,6 +91,8 @@ export const FormEmp = ({ data }) => {
     setEdad(data.Edad ?? '')
     setAservicio(data.A_servicio ?? '')
     setActivo(data.Activo ?? '')
+    setFechaR(data.FechaRetiro ?? '')
+    setCausaR(data.CausaRetiro ?? '')
   }, [data]);
 
   useEffect(() => {
@@ -111,11 +119,34 @@ export const FormEmp = ({ data }) => {
   const HandleUpdateEmp = async (e) => {
     e.preventDefault()
     const id = data.id
-    UpdateEmp({
+     UpdateEmp({
       id, Nomina, Nombre, Nombres, Primerapellido, Segundoapellido, Correo, Genero, Contrato, Grado, Rectoria,
       Facultad, Centro, Puesto, Jefe, Fecha, SeguroS, Curp, Nacionalidad, EstadoCivil, Direccion, Telefono,
       Nivel1, Institucion1, Titulo1, Nivel2, Institucion2, Titulo2, Nivel3, Institucion3, Titulo3, TipoContrato,
-      Edad, Aservicio, Activo
+      Edad, Activo, Aservicio, FechaR, CausaR
+    }).then(function (result) {
+      console.log(result)
+        if(result == '200'){
+          toast({
+            title: 'Actualización Correcto',
+            description: 'Empleado actualizado correctamente',
+            status: 'success',
+            duration: 4000,
+            position: 'top',
+          })
+          setTimeout(function(){
+            window.location.reload()
+          }, 2000);
+          
+        }else{
+          toast({
+              title: 'Actualización Incorrecta',
+              description: 'Error al actualizar el empleado',
+              status: 'error',
+              duration: 4000,
+              position:'top',
+          })
+        }
     })
 
   }
@@ -124,7 +155,30 @@ export const FormEmp = ({ data }) => {
     e.preventDefault()
     const id = data.id
     const Activo = 1
-    DeleteEmp({ id, Activo })
+    DeleteEmp({ id, Activo }).then(function (result) {
+      console.log(result)
+        if(result == '200'){
+          toast({
+            title: 'Desactivación Correcto',
+            description: 'Empleado Desactivado correctamente',
+            status: 'success',
+            duration: 4000,
+            position: 'top',
+          })
+          setTimeout(function(){
+            window.location.reload()
+          }, 2000);
+          
+        }else{
+          toast({
+              title: 'Actualización Incorrecta',
+              description: 'Error al actualizar el empleado',
+              status: 'error',
+              duration: 4000,
+              position:'top',
+          })
+        }
+    })
 
   }
 
@@ -132,7 +186,30 @@ export const FormEmp = ({ data }) => {
     e.preventDefault()
     const id = data.id
     const Activo = 0
-    ActivEmp({id, Activo})
+    ActivEmp({ id, Activo }).then(function (result) {
+      console.log(result)
+        if(result == '200'){
+          toast({
+            title: 'Activación Correcta',
+            description: 'Empleado Activado correctamente',
+            status: 'success',
+            duration: 4000,
+            position: 'top',
+          })
+          setTimeout(function(){
+            window.location.reload()
+          }, 2000);
+          
+        }else{
+          toast({
+              title: 'Actualización Incorrecta',
+              description: 'Error al actualizar el empleado',
+              status: 'error',
+              duration: 4000,
+              position:'top',
+          })
+        }
+    })
   }
 
 
@@ -393,6 +470,26 @@ export const FormEmp = ({ data }) => {
                   <Input type="text" value={Aservicio || ""} onChange={((e) => setAservicio(e.target.value))} />
                 </FormControl>
               </Box>
+              {
+                data.Activo == 1 ? (
+                  <>
+                    <Box>
+                      <FormControl >
+                        <FormLabel style={{ whiteSpace: 'nowrap' }}>Fecha Retiro</FormLabel>
+                        <Input type="text" value={FechaR} onChange={((e) => setFechaR(e.target.value))} />
+                      </FormControl>
+                    </Box>
+                    <Box>
+                      <FormControl >
+                        <FormLabel style={{ whiteSpace: 'nowrap' }}>Causa Retiro</FormLabel>
+                        <Input type="text" value={CausaR} onChange={((e) => setCausaR(e.target.value))} />
+                      </FormControl>
+                    </Box>
+                  </>
+                ) : (
+                  <></>
+                )
+              }
               {getrol &&
                 <>
                   {
@@ -402,17 +499,17 @@ export const FormEmp = ({ data }) => {
                       </Box>
                       :
                       <Box>
-                        <Button marginTop="18%" width={40} colorScheme='facebook' onClick={HandleUpdateEmp}>Actualizar Empleado</Button>
+                        <Button marginTop="28%" width='100px' colorScheme='facebook' onClick={HandleUpdateEmp}>Actualizar </Button>
                       </Box>
                   }
                   {
                     data.Activo == 0 ?
                       <Box>
-                        <Button marginTop="18%" width={40} colorScheme='red' onClick={HandleDeletEmp}>Desactivar empleado</Button>
+                        <Button marginTop="28%" width='100px' colorScheme='red' onClick={HandleDeletEmp}>Desactivar</Button>
                       </Box>
                       : data.Activo == 1 ?
                         <Box>
-                          <Button marginTop="18%" width={40} colorScheme='whatsapp' onClick={HandleActivEmp}>Activar Empleado</Button>
+                          <Button marginTop="28%" width='100px' colorScheme='whatsapp' onClick={HandleActivEmp}>Activar </Button>
                         </Box>
                         :
                         <> </>

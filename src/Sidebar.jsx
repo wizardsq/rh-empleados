@@ -25,6 +25,12 @@ const sidebarNavItems = [
         section: 'createEmp'
     },
     {
+        display: 'Tabla Empleados Ina',
+        icon: <BiUserPlus size={30} />,
+        to: '/empleadosin',
+        section: 'empleadosin'
+    },
+    {
         display: 'Crear Usuarios',
         icon: <BiPlusMedical size={23} />,
         to: '/create',
@@ -32,7 +38,7 @@ const sidebarNavItems = [
     },
 
     {
-        icon: <Button color='withe' backgroundColor='red.600'_hover={{ bg: 'red.500' }} size="lg" onClick={() => {localStorage.clear(); window.location.reload()}}>Cerrar Session</Button>,
+        icon: <Button color='withe' backgroundColor='red.600'_hover={{ bg: 'red.500' }} size="lg" onClick={() => {localStorage.clear();localStorage.setItem('auth', 'false'); window.location.reload()}}>Cerrar Session</Button>,
         section: 'logout'
     },
 ]
@@ -66,7 +72,9 @@ export const Sidebar = () => {
                 return item;
             } else if (item.section == 'createEmp' && (isAdmin || isLector)) {
                 return item;
-            } else if (item.section == 'logout' && (isAdmin || isLector)) {
+            }else if (item.section == 'empleadosin' && (isAdmin || isLector)) {
+                return item
+            }else if (item.section == 'logout' && (isAdmin || isLector)) {
                 return item;
             } else if (item.section == 'create' && isAdmin ) {
                 return item;

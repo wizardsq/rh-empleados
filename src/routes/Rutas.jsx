@@ -7,6 +7,7 @@ import { Home } from '../pages/Home'
 import { Empleados } from '../pages/Empleados'
 import { Crearempleado } from '../pages/TEmpleados'
 import { Layout } from '../Layout'
+import { TEmpleadosIna } from '../pages/TEmpleadosIna'
 
 //Rutas Externas
 import { Login } from '../components/Login'
@@ -23,6 +24,7 @@ export const Rutas = () => {
           <Route path="/home" element={<Home />} />
           <Route path="/create" element={<CreateUs />} />
           <Route path="/createEmp" element={<Crearempleado />} />
+          <Route path="/empleadosin" element={<TEmpleadosIna />} />
           <Route path="/usuarios" element={<Empleados />} />
         </Route>
       </Route>

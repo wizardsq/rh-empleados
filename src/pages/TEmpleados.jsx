@@ -106,7 +106,7 @@ export const Crearempleado = () => {
   return (
     <>
       <Button key='exportexcel' rightIcon={<RiFileExcel2Line   size="24px" />} colorScheme='whatsapp' onClick={HandleExport}>Exportar a excel</Button>
-      <TableContainer>
+      <TableContainer className='table'>
         <Table>
           <Thead>
             <Th key='Genero'>
@@ -287,6 +287,8 @@ export const Crearempleado = () => {
                         <Td>Inactivo</Td>
                       )
                     }
+                    <Td>Trabajando</Td>
+                    <Td>Trabajando</Td>
                     <Td>{datos.createdAt}</Td>
                     <Td>{datos.updatedAt}</Td>
                   </Tr>

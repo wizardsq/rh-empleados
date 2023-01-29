@@ -5,12 +5,13 @@ import axios from 'axios'
 //import {ToastContainer ,toast } from 'react-toastify';
 
 export async function LoginUser({ correo, passw }) {
-
+    
     await axios.post(`${process.env.REACT_APP_URL}/login`, {
         correo,
         passw
     })
         .then(function (res) {
+            localStorage.setItem('auth', 'true')
             localStorage.setItem('user', JSON.stringify(res.data));
             const user = localStorage.getItem('user');
             if (user != null) {
@@ -18,7 +19,7 @@ export async function LoginUser({ correo, passw }) {
             }
         })
         .catch(function (error) {
-            alert('Usuario y/o contrasena incorrecta')
+            console.log(error)
         })
 }
 
@@ -35,6 +36,7 @@ export async function CreatEmp({ Nomina, Nombre, Nombres, Primerapellido, Segund
         Edad, Aservicio
     }).then(function (res) {
         if(res.status == 200){
+            console.log(res.status)
             alert('Empleado creado correctamente')
             window.location.reload()
         }else{
@@ -47,48 +49,51 @@ export async function CreatEmp({ Nomina, Nombre, Nombres, Primerapellido, Segund
 export async function UpdateEmp({ id, Nomina, Nombre, Nombres, Primerapellido, Segundoapellido, Correo, Genero, Contrato, Grado, Rectoria,
     Facultad, Centro, Puesto, Jefe, Fecha, SeguroS, Curp, Nacionalidad, EstadoCivil, Direccion, Telefono,
     Nivel1, Institucion1, Titulo1, Nivel2, Institucion2, Titulo2, Nivel3, Institucion3, Titulo3, TipoContrato,
-    Edad, Aservicio
+    Edad, Aservicio, FechaR, CausaR
 }) {
+    let stat;
     await axios.put(`${process.env.REACT_APP_URL}/updateEmp/${id}`, {
         Nomina, Nombre, Nombres, Primerapellido, Segundoapellido, Correo, Genero, Contrato, Grado, Rectoria,
         Facultad, Centro, Puesto, Jefe, Fecha, SeguroS, Curp, Nacionalidad, EstadoCivil, Direccion, Telefono,
         Nivel1, Institucion1, Titulo1, Nivel2, Institucion2, Titulo2, Nivel3, Institucion3, Titulo3, TipoContrato,
-        Edad, Aservicio
+        Edad, Aservicio, FechaR, CausaR
     }).then(function (res) {
-        if(res.status == 200){
-            alert('Empleado Actualizado')
-            window.location.reload()
+        if(res.status == '200'){
+            stat = res.status
         }else{
-            alert('Ocurrio un error al intentar Actualizar al empleado')
+            stat = res.status
         }
+    }).catch(function (error) {
+        console.log(error)
     })
+    return stat
 }
 
 export async function DeleteEmp({id, Activo}){
+    let stat;
     await axios.put(`${process.env.REACT_APP_URL}/deleteEmp/${id}`, {
         Activo
     }).then(function (res) {
         if(res.status == 200){
-            alert('Usuario Eliminado')
-            window.location.reload()
+           stat = res.status
         }else{
-            alert('Ocurrio un error al intentar eliminar al empleado')
-            console.log(res)
+          stat = res.status
         }
     })
+    return stat
 }
 
 export async function ActivEmp({id, Activo}){
+    let stat
     await axios.put(`${process.env.REACT_APP_URL}/activEmp/${id}`, {
         Activo
     }).then(function (res) {
         console.log(res.status)
         if(res.status == 200){
-            alert('Usuario Activado')
-            window.location.reload()
+            stat= res.status
         }else{
-            alert('Ocurrio un error al intentar Activar al empleado')
-            console.log(res)
+            stat = res.status
         }
     })
+    return stat
 }

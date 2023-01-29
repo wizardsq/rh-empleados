@@ -11,7 +11,8 @@ import {
   Stack,
   Image,
   InputGroup,
-  InputRightElement
+  InputRightElement,
+  useToast 
 } from '@chakra-ui/react';
 import { ViewIcon, ViewOffIcon } from '@chakra-ui/icons';
 
@@ -27,13 +28,40 @@ import { useState } from 'react';
 
 const logo = process.env.PUBLIC_URL + '/img/' + 'logoum.jpg'
 export const Login = () => {
+  localStorage.setItem('auth', 'false')
   const [correo, setCorreo] = useState('')
   const [passw, setPassw] = useState('')
   const [showPassword, setShowPassword] = useState(false);
+  const toast = useToast()
 
   const HandleSubmit = (event) => {
     event.preventDefault()
-    LoginUser({ correo, passw});
+    
+    
+    LoginUser({ correo, passw}).then(function (){
+        const auth = localStorage.getItem('auth')
+        if(auth == 'false'){
+          toast({
+            title: 'Error en session.',
+            position: 'top',
+            description: "Correo y/o contraseña incorrecta",
+            status: 'error',
+            duration: 4000,
+          })
+        }else {
+          toast({
+            title: 'Acceso',
+            position: 'top',
+            description: "Iniciando sesión...",
+            status: 'success',
+            duration: 4000,
+          })
+          let timeoutId = setTimeout(function(){
+          }, 5000);
+          clearTimeout(timeoutId);
+        }
+    })
+    
   }
 
   return (
