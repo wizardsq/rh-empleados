@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState, React } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { BiHome, BiUser, BiUserPlus, BiPlusMedical } from "react-icons/bi";
+import {AiOutlineUserDelete} from 'react-icons/ai'
 import {FaBars} from 'react-icons/fa'
 import {MdExitToApp} from 'react-icons/md'
 import './assets/css/sidebar.scss';
@@ -15,24 +16,24 @@ const sidebarNavItems = [
 
     {
         display: 'Empleados',
-        icon: <BiUser size={25} />,
+        icon: <BiUser size={28} />,
         to: '/usuarios',
         section: 'usuarios'
     },
     {
-        display: 'Tabla Emp',
-        icon: <BiUserPlus size={30} />,
+        display: 'Emp Act.',
+        icon: <BiUserPlus size={33} />,
         to: '/createEmp',
         section: 'createEmp'
     },
     {
-        display: 'Tabla Emp Ina',
-        icon: <BiUserPlus size={30} />,
+        display: 'Emp Inac.',
+        icon: <AiOutlineUserDelete size={30} />,
         to: '/empleadosin',
         section: 'empleadosin'
     },
     {
-        display: 'Crear Us',
+        display: 'Crear Us  ',
         icon: <BiPlusMedical size={23} />,
         to: '/create',
         section: 'create'
