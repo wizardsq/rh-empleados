@@ -215,46 +215,46 @@ export const FormEmp = ({ data }) => {
 
   return (
     <>
-      <Stack spacing={80} marginTop='-5%' maxW={'xl'} >
+      <Stack spacing={80} marginTop='-6%' maxW={'lg'} >
         <Box
           rounded={'lg'}
           boxShadow={'lg'}
-          width="160%"
+          width="154%"
           p={6}>
           <Stack >
             <HStack py={2} spacing={5}>
               <Box>
                 <FormControl isRequired>
                   <FormLabel>Nomina</FormLabel>
-                  <Input type="number" value={Nomina} onChange={((e) => setNomina(e.target.value))} />
+                  <Input width={110}  type="number" value={Nomina} onChange={((e) => setNomina(e.target.value))} />
                 </FormControl>
               </Box>
 
               <Box>
                 <FormControl isRequired>
                   <FormLabel>Nombre</FormLabel>
-                  <Input type="text" value={Nombre} onChange={((e) => setNombre(e.target.value))} />
+                  <Input width={110}   type="text" value={Nombre} onChange={((e) => setNombre(e.target.value))} />
                 </FormControl>
               </Box>
 
               <Box>
                 <FormControl >
                   <FormLabel>Nombres</FormLabel>
-                  <Input type="text" value={Nombres} onChange={((e) => setNombres(e.target.value))} />
+                  <Input width={110}   type="text" value={Nombres} onChange={((e) => setNombres(e.target.value))} />
                 </FormControl>
               </Box>
 
               <Box>
                 <FormControl isRequired>
                   <FormLabel>Primer Apellido</FormLabel>
-                  <Input type="text" value={Primerapellido} onChange={((e) => setPrimerapellido(e.target.value))} />
+                  <Input width={110}   type="text" value={Primerapellido} onChange={((e) => setPrimerapellido(e.target.value))} />
                 </FormControl>
               </Box>
 
               <Box>
                 <FormControl >
                   <FormLabel>Segundo Apellido</FormLabel>
-                  <Input type="text" value={Segundoapellido} onChange={((e) => setSegundoapellido(e.target.value))} />
+                  <Input width={110}   type="text" value={Segundoapellido} onChange={((e) => setSegundoapellido(e.target.value))} />
                 </FormControl>
               </Box>
             </HStack>
@@ -263,35 +263,35 @@ export const FormEmp = ({ data }) => {
               <Box>
                 <FormControl  >
                   <FormLabel>Correo</FormLabel>
-                  <Input type="text" value={Correo} onChange={((e) => setCorreo(e.target.value))} />
+                  <Input width={110}   type="text" value={Correo} onChange={((e) => setCorreo(e.target.value))} />
                 </FormControl>
               </Box>
 
               <Box>
                 <FormControl >
                   <FormLabel>Genero</FormLabel>
-                  <Input type="text" value={Genero} onChange={((e) => setGenero(e.target.value))} />
+                  <Input width={110}   type="text" value={Genero} onChange={((e) => setGenero(e.target.value))} />
                 </FormControl>
               </Box>
 
               <Box>
                 <FormControl >
                   <FormLabel>Tipo contrato</FormLabel>
-                  <Input type="text" value={Contrato} onChange={((e) => setContrato(e.target.value))} />
+                  <Input width={110}   type="text" value={Contrato} onChange={((e) => setContrato(e.target.value))} />
                 </FormControl>
               </Box>
 
               <Box>
                 <FormControl >
                   <FormLabel>Grado Academico</FormLabel>
-                  <Input type="text" value={Grado} onChange={((e) => setGrado(e.target.value))} />
+                  <Input width={110}   type="text" value={Grado} onChange={((e) => setGrado(e.target.value))} />
                 </FormControl>
               </Box>
 
               <Box>
                 <FormControl >
-                  <FormLabel>Rectroria</FormLabel>
-                  <Input type="text" value={Rectoria} onChange={((e) => setRectoria(e.target.value))} />
+                  <FormLabel>Rectoria</FormLabel>
+                  <Input width={110}   type="text" value={Rectoria} onChange={((e) => setRectoria(e.target.value))} />
                 </FormControl>
               </Box>
             </HStack>
@@ -300,7 +300,7 @@ export const FormEmp = ({ data }) => {
               <Box>
                 <FormControl >
                   <FormLabel>Facultad/Dep</FormLabel>
-                  <Input type="text" value={Facultad} onChange={((e) => setFacultad(e.target.value))} />
+                  <Input width={110}   type="text" value={Facultad} onChange={((e) => setFacultad(e.target.value))} />
 
                 </FormControl>
               </Box>
@@ -308,28 +308,28 @@ export const FormEmp = ({ data }) => {
               <Box>
                 <FormControl >
                   <FormLabel>Centro trabajo</FormLabel>
-                  <Input type="text" value={Centro} onChange={((e) => setCentro(e.target.value))} />
+                  <Input width={110}   type="text" value={Centro} onChange={((e) => setCentro(e.target.value))} />
                 </FormControl>
               </Box>
 
               <Box>
                 <FormControl >
                   <FormLabel>Puesto</FormLabel>
-                  <Input type="text" value={Puesto} onChange={((e) => setPuesto(e.target.value))} />
+                  <Input width={110}   type="text" value={Puesto} onChange={((e) => setPuesto(e.target.value))} />
                 </FormControl>
               </Box>
 
               <Box>
                 <FormControl >
                   <FormLabel>Jefe inmediato</FormLabel>
-                  <Input type="text" value={Jefe} onChange={((e) => setJefe(e.target.value))} />
+                  <Input width={110}   type="text" value={Jefe} onChange={((e) => setJefe(e.target.value))} />
                 </FormControl>
               </Box>
 
               <Box>
                 <FormControl >
                   <FormLabel>Fecha nacimiento</FormLabel>
-                  <Input type="text" value={Fecha || ""} onChange={((e) => setFecha(e.target.value))} />
+                  <Input width={130}   type="text" value={Fecha || ""} onChange={((e) => setFecha(e.target.value))} />
                 </FormControl>
               </Box>
             </HStack>
@@ -339,35 +339,35 @@ export const FormEmp = ({ data }) => {
               <Box>
                 <FormControl  >
                   <FormLabel>NSS</FormLabel>
-                  <Input type="number" value={SeguroS || ""} onChange={((e) => setSeguroS(e.target.value))} />
+                  <Input width={114}   type="number" value={SeguroS || ""} onChange={((e) => setSeguroS(e.target.value))} />
                 </FormControl>
               </Box>
 
               <Box>
                 <FormControl >
                   <FormLabel>CURP</FormLabel>
-                  <Input type="text" value={Curp || ""} onChange={((e) => setCurp(e.target.value))} />
+                  <Input width={114}   type="text" value={Curp || ""} onChange={((e) => setCurp(e.target.value))} />
                 </FormControl>
               </Box>
 
               <Box>
                 <FormControl >
                   <FormLabel>Nacionalidad</FormLabel>
-                  <Input type="text" value={Nacionalidad} onChange={((e) => setNacionalidad(e.target.value))} />
+                  <Input width={114}   type="text" value={Nacionalidad} onChange={((e) => setNacionalidad(e.target.value))} />
                 </FormControl>
               </Box>
 
               <Box>
                 <FormControl >
                   <FormLabel>Estado civil</FormLabel>
-                  <Input type="text" value={EstadoCivil} onChange={((e) => setEstadoCivil(e.target.value))} />
+                  <Input width={114}   type="text" value={EstadoCivil} onChange={((e) => setEstadoCivil(e.target.value))} />
                 </FormControl>
               </Box>
 
               <Box>
                 <FormControl >
                   <FormLabel>Direccion</FormLabel>
-                  <Input type="text" value={Direccion} onChange={((e) => setDireccion(e.target.value))} />
+                  <Input width={114}   type="text" value={Direccion} onChange={((e) => setDireccion(e.target.value))} />
                 </FormControl>
               </Box>
             </HStack>
@@ -377,35 +377,35 @@ export const FormEmp = ({ data }) => {
               <Box>
                 <FormControl  >
                   <FormLabel>Telefono</FormLabel>
-                  <Input type="text" value={Telefono} onChange={((e) => setTelefono(e.target.value))} />
+                  <Input width={110}   type="text" value={Telefono} onChange={((e) => setTelefono(e.target.value))} />
                 </FormControl>
               </Box>
 
               <Box>
                 <FormControl >
                   <FormLabel>Licenciatura/Técnica</FormLabel>
-                  <Input type="text" value={Nivel1} onChange={((e) => setNivel1(e.target.value))} />
+                  <Input width={140}   type="text" value={Nivel1} onChange={((e) => setNivel1(e.target.value))} />
                 </FormControl>
               </Box>
 
               <Box>
                 <FormControl >
-                  <FormLabel>Nombre institución</FormLabel>
-                  <Input type="text" value={Institucion1} onChange={((e) => setInstitucion1(e.target.value))} />
+                  <FormLabel>Nombre inst.</FormLabel>
+                  <Input width={110}   type="text" value={Institucion1} onChange={((e) => setInstitucion1(e.target.value))} />
                 </FormControl>
               </Box>
 
               <Box>
                 <FormControl >
                   <FormLabel>Nombre titulo</FormLabel>
-                  <Input type="text" value={Titulo1} onChange={((e) => setTitulo1(e.target.value))} />
+                  <Input width={110}   type="text" value={Titulo1} onChange={((e) => setTitulo1(e.target.value))} />
                 </FormControl>
               </Box>
 
               <Box>
                 <FormControl >
                   <FormLabel>Maestria</FormLabel>
-                  <Input type="text" value={Nivel2} onChange={((e) => setNivel2(e.target.value))} />
+                  <Input width={90}   type="text" value={Nivel2} onChange={((e) => setNivel2(e.target.value))} />
                 </FormControl>
               </Box>
             </HStack>
@@ -414,36 +414,36 @@ export const FormEmp = ({ data }) => {
             <HStack py={2} spacing={5}>
               <Box>
                 <FormControl  >
-                  <FormLabel>Nombre institución</FormLabel>
-                  <Input type="text" value={Institucion2} onChange={((e) => setInstitucion2(e.target.value))} />
+                  <FormLabel>Nombre inst.</FormLabel>
+                  <Input width={114}   type="text" value={Institucion2} onChange={((e) => setInstitucion2(e.target.value))} />
                 </FormControl>
               </Box>
 
               <Box>
                 <FormControl >
                   <FormLabel>Nombre titulo</FormLabel>
-                  <Input type="text" value={Titulo2} onChange={((e) => setTitulo2(e.target.value))} />
+                  <Input width={114}   type="text" value={Titulo2} onChange={((e) => setTitulo2(e.target.value))} />
                 </FormControl>
               </Box>
 
               <Box>
                 <FormControl >
                   <FormLabel>Doctorado</FormLabel>
-                  <Input type="text" value={Nivel3} onChange={((e) => setNivel3(e.target.value))} />
+                  <Input width={114}   type="text" value={Nivel3} onChange={((e) => setNivel3(e.target.value))} />
                 </FormControl>
               </Box>
 
               <Box>
                 <FormControl >
-                  <FormLabel>Nombre institución</FormLabel>
-                  <Input type="text" value={Institucion3} onChange={((e) => setInstitucion3(e.target.value))} />
+                  <FormLabel>Nombre inst.</FormLabel>
+                  <Input width={114}   type="text" value={Institucion3} onChange={((e) => setInstitucion3(e.target.value))} />
                 </FormControl>
               </Box>
 
               <Box>
                 <FormControl >
                   <FormLabel>Nombre titulo</FormLabel>
-                  <Input type="text" value={Titulo3} onChange={((e) => setTitulo3(e.target.value))} />
+                  <Input width={114}   type="text" value={Titulo3} onChange={((e) => setTitulo3(e.target.value))} />
                 </FormControl>
               </Box>
             </HStack>
@@ -453,21 +453,21 @@ export const FormEmp = ({ data }) => {
               <Box>
                 <FormControl  >
                   <FormLabel style={{ whiteSpace: 'nowrap' }}>Tipo contrato</FormLabel>
-                  <Input type="text" value={TipoContrato} onChange={((e) => setTipoContrato(e.target.value))} />
+                  <Input width={110}   type="text" value={TipoContrato} onChange={((e) => setTipoContrato(e.target.value))} />
                 </FormControl>
               </Box>
 
               <Box>
                 <FormControl isRequired>
                   <FormLabel>Edad</FormLabel>
-                  <Input type="text" value={Edad || ""} onChange={((e) => setEdad(e.target.value))} />
+                  <Input width={110}   type="text" value={Edad || ""} onChange={((e) => setEdad(e.target.value))} />
                 </FormControl>
               </Box>
 
               <Box>
                 <FormControl >
                   <FormLabel style={{ whiteSpace: 'nowrap' }}>Años servicio</FormLabel>
-                  <Input type="text" value={Aservicio || ""} onChange={((e) => setAservicio(e.target.value))} />
+                  <Input width={110}   type="text" value={Aservicio || ""} onChange={((e) => setAservicio(e.target.value))} />
                 </FormControl>
               </Box>
               {
@@ -476,13 +476,13 @@ export const FormEmp = ({ data }) => {
                     <Box>
                       <FormControl >
                         <FormLabel style={{ whiteSpace: 'nowrap' }}>Fecha Retiro</FormLabel>
-                        <Input type="text" value={FechaR} onChange={((e) => setFechaR(e.target.value))} />
+                        <Input width={110}   type="text" value={FechaR} onChange={((e) => setFechaR(e.target.value))} />
                       </FormControl>
                     </Box>
                     <Box>
                       <FormControl >
                         <FormLabel style={{ whiteSpace: 'nowrap' }}>Causa Retiro</FormLabel>
-                        <Input type="text" value={CausaR} onChange={((e) => setCausaR(e.target.value))} />
+                        <Input width={110}   type="text" value={CausaR} onChange={((e) => setCausaR(e.target.value))} />
                       </FormControl>
                     </Box>
                   </>
