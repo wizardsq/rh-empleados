@@ -3,7 +3,6 @@ import { Link, useLocation } from 'react-router-dom';
 import { BiHome, BiUser, BiUserPlus, BiPlusMedical } from "react-icons/bi";
 import {FaBars} from 'react-icons/fa'
 import {MdExitToApp} from 'react-icons/md'
-import { Button } from '@chakra-ui/react';
 import './assets/css/sidebar.scss';
 
 const sidebarNavItems = [
@@ -21,19 +20,19 @@ const sidebarNavItems = [
         section: 'usuarios'
     },
     {
-        display: 'Tabla Empleados',
+        display: 'Tabla Emp',
         icon: <BiUserPlus size={30} />,
         to: '/createEmp',
         section: 'createEmp'
     },
     {
-        display: 'Tabla Empleados Ina',
+        display: 'Tabla Emp Ina',
         icon: <BiUserPlus size={30} />,
         to: '/empleadosin',
         section: 'empleadosin'
     },
     {
-        display: 'Crear Usuarios',
+        display: 'Crear Us',
         icon: <BiPlusMedical size={23} />,
         to: '/create',
         section: 'create'
@@ -111,7 +110,7 @@ export const Sidebar = () => {
                     ref={indicatorRef}
                     className="sidebar__menu__indicator"
                     style={{
-                        transform: `translateX(-50%) translateY(${activeIndex * stepHeight}px)`
+                        transform: `translateX(-51%) translateY(${activeIndex * stepHeight}px)`
                     }}
                 ></div>
                 {
