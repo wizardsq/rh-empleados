@@ -89,7 +89,7 @@ export const Empleados = () => {
 
 
             <Card py={5} px={5}>
-              <List className='listado' height={360} width={250} spacing={3}>
+              <List className='listado' height={360} width={265} spacing={3}>
                 {
                 isLoading ? (
                   <>
