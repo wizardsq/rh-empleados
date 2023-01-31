@@ -1,12 +1,15 @@
-import React from 'react'
+import React, {useState}from 'react'
 import { Outlet } from 'react-router-dom';
 import { Sidebar } from './Sidebar'
 export const Layout = () => {
+    const [collapsed, setCollapsed] = useState(false)
+
     return <div style={{
-        padding: '100px 0px 0px 270px'
+        padding: collapsed ? '50px 0px 0px 130px' : '100px 0px 0px 270px',
+        transition: 'padding 0.5s'
     }}>
         
         <Outlet />
-        <Sidebar />
+        <Sidebar collapsed={collapsed} setCollapsed={setCollapsed} />
     </div>;
 }

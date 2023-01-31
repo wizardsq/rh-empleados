@@ -72,7 +72,7 @@ export const Empleados = () => {
       templateColumns='repeat(5, 2fr)'
       gap={4}
     >
-      <GridItem marginTop='-24%' rowSpan={2} >
+      <GridItem marginTop='-10%' rowSpan={2} >
         <Card>
           <CardHeader>
             <Heading size='md' marginBottom={3}>Empleados</Heading>

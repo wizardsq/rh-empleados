@@ -215,7 +215,7 @@ export const FormEmp = ({ data }) => {
 
   return (
     <>
-      <Stack spacing={80} marginTop='-11%' maxW={'xl'} >
+      <Stack spacing={80} marginTop='-5%' maxW={'xl'} >
         <Box
           rounded={'lg'}
           boxShadow={'lg'}
@@ -338,14 +338,14 @@ export const FormEmp = ({ data }) => {
             <HStack py={2} spacing={5}>
               <Box>
                 <FormControl  >
-                  <FormLabel>Numero seguro social</FormLabel>
+                  <FormLabel>NSS</FormLabel>
                   <Input type="number" value={SeguroS || ""} onChange={((e) => setSeguroS(e.target.value))} />
                 </FormControl>
               </Box>
 
               <Box>
                 <FormControl >
-                  <FormLabel>Curp</FormLabel>
+                  <FormLabel>CURP</FormLabel>
                   <Input type="text" value={Curp || ""} onChange={((e) => setCurp(e.target.value))} />
                 </FormControl>
               </Box>
@@ -383,7 +383,7 @@ export const FormEmp = ({ data }) => {
 
               <Box>
                 <FormControl >
-                  <FormLabel>Licenciaturas/Tecnica</FormLabel>
+                  <FormLabel>Licenciatura/Técnica</FormLabel>
                   <Input type="text" value={Nivel1} onChange={((e) => setNivel1(e.target.value))} />
                 </FormControl>
               </Box>
@@ -404,7 +404,7 @@ export const FormEmp = ({ data }) => {
 
               <Box>
                 <FormControl >
-                  <FormLabel>Maestria/equivalente</FormLabel>
+                  <FormLabel>Maestria</FormLabel>
                   <Input type="text" value={Nivel2} onChange={((e) => setNivel2(e.target.value))} />
                 </FormControl>
               </Box>
@@ -428,7 +428,7 @@ export const FormEmp = ({ data }) => {
 
               <Box>
                 <FormControl >
-                  <FormLabel>Doctorado/equivalente</FormLabel>
+                  <FormLabel>Doctorado</FormLabel>
                   <Input type="text" value={Nivel3} onChange={((e) => setNivel3(e.target.value))} />
                 </FormControl>
               </Box>

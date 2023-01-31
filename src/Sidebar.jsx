@@ -44,7 +44,7 @@ const sidebarNavItems = [
     },
 ]
 
-export const Sidebar = () => {
+export const Sidebar = ({collapsed, setCollapsed}) => {
 
     const [activeIndex, setActiveIndex] = useState(0);
     const [getrol, setGetRol] = useState(false)
@@ -52,7 +52,6 @@ export const Sidebar = () => {
     const sidebarRef = useRef();
     const indicatorRef = useRef();
     const location = useLocation();
-    const [collapsed ,setCollapsed] = useState(false)
 
     useEffect(() => {
         const getRol = JSON.parse(localStorage.getItem('user'))
@@ -110,7 +109,7 @@ export const Sidebar = () => {
                     ref={indicatorRef}
                     className="sidebar__menu__indicator"
                     style={{
-                        transform: `translateX(-51%) translateY(${activeIndex * stepHeight}px)`
+                        transform: `translateX(-51%) translateY(${activeIndex * stepHeight -2}px)`
                     }}
                 ></div>
                 {
