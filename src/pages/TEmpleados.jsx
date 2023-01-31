@@ -299,7 +299,7 @@ export const Crearempleado = () => {
             <Tr>
               <Td colSpan={header.length}>
                 <div className="pagination-container">
-                  <Button colorScheme='facebook' disabled={currentPage === 1} onClick={() => setCurrentPage(currentPage - 1)}>Anterior</Button>
+                  <Button className='anterior' colorScheme='facebook' disabled={currentPage === 1} onClick={() => setCurrentPage(currentPage - 1)}>Anterior</Button>
                   &nbsp; <strong className='pag'>Página {currentPage} de {totalPages}</strong> &nbsp;
                   <Button colorScheme='facebook' disabled={currentPage === totalPages} onClick={() => setCurrentPage(currentPage + 1)}>Siguiente</Button>
 

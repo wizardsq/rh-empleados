@@ -1,10 +1,15 @@
 .sidebar {
-    position: fixed;
+    position:fixed;
     z-index: 1;
     top: 0;
     left: 0;
     height: 100vh;
     background-color: #0F1A34;
+
+    &bars{
+        font-size: 25px;
+        margin-left: 50%;
+    }
     
 
     &__logo {
@@ -46,6 +51,7 @@
 
         &__indicator {
             position: absolute;
+            top: 0;
             left: 50%;
             width: calc(95% );
             background-color: #091023;
@@ -55,4 +61,47 @@
             transition: 0.3s ease-in-out;
         }
     }
+
+    .sidebar__menu {
+        width: 230px;
+        transition: width 0.3s ease-in-out;
+    }
+    
+    .sidebar__menu.collapsed {
+        width: 100px;
+    }
+
+    .sidebar__menu__item__icon {
+        display: flex;
+      }
+      
+      .sidebar__menu__item__text {
+        display: none;
+      }
+
+      .collapsed .sidebar__logo{
+        display: none;
+      }
+      
+      .collapsed .sidebar__menu__item__icon {
+        display: flex;
+      }
+      
+      .collapsed .sidebar__menu__item__text {
+        display: none;
+      }
+      
+      .sidebar__menu:not(.collapsed) .sidebar__menu__item__icon {
+        display: flex;
+      }
+      
+      .sidebar__menu:not(.collapsed) .sidebar__menu__item__text {
+        display: block;
+      }
+      .sidebar__toggle-button{
+        margin-top: 5%;
+        color: #FFF;
+        margin-left: 30px;
+        margin-bottom: 5%;
+      }
 }

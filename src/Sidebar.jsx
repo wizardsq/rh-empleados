@@ -1,6 +1,8 @@
 import { useEffect, useRef, useState, React } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { BiHome, BiUser, BiUserPlus, BiPlusMedical } from "react-icons/bi";
+import {FaBars} from 'react-icons/fa'
+import {MdExitToApp} from 'react-icons/md'
 import { Button } from '@chakra-ui/react';
 import './assets/css/sidebar.scss';
 
@@ -38,7 +40,7 @@ const sidebarNavItems = [
     },
 
     {
-        icon: <Button color='withe' backgroundColor='red.600'_hover={{ bg: 'red.500' }} size="lg" onClick={() => {localStorage.clear();localStorage.setItem('auth', 'false'); window.location.reload()}}>Cerrar Session</Button>,
+        icon: <MdExitToApp color='#FF2D00'  size={40} onClick={() => { localStorage.clear(); localStorage.setItem('auth', 'false'); window.location.reload() }} />,
         section: 'logout'
     },
 ]
@@ -51,6 +53,7 @@ export const Sidebar = () => {
     const sidebarRef = useRef();
     const indicatorRef = useRef();
     const location = useLocation();
+    const [collapsed ,setCollapsed] = useState(false)
 
     useEffect(() => {
         const getRol = JSON.parse(localStorage.getItem('user'))
@@ -61,7 +64,7 @@ export const Sidebar = () => {
             setStepHeight(sidebarItem.clientHeight);
         }, 50);
     }, []);
-   
+
     const filterNavItemsByRole = (navItems, role) => {
         const isAdmin = role == 1
         const isLector = role == 2
@@ -72,17 +75,20 @@ export const Sidebar = () => {
                 return item;
             } else if (item.section == 'createEmp' && (isAdmin || isLector)) {
                 return item;
-            }else if (item.section == 'empleadosin' && (isAdmin || isLector)) {
+            } else if (item.section == 'empleadosin' && (isAdmin || isLector)) {
                 return item
-            }else if (item.section == 'logout' && (isAdmin || isLector)) {
+            } else if (item.section == 'logout' && (isAdmin || isLector)) {
                 return item;
-            } else if (item.section == 'create' && isAdmin ) {
+            } else if (item.section == 'create' && isAdmin) {
                 return item;
             }
         });
     };
     const role = getrol['rol']
     const filteredNavItems = filterNavItemsByRole(sidebarNavItems, role);
+    const handleToggleSidebar = () => {
+        setCollapsed( !collapsed);
+      };
 
 
     // change active index
@@ -95,9 +101,12 @@ export const Sidebar = () => {
     return (
         <div className='sidebar'>
             <div className="sidebar__logo">
-                Recursos Humanos
+                {collapsed ? "RH" : 'Recursos Humanos'}
             </div>
-            <div ref={sidebarRef} className="sidebar__menu">
+            <div className="sidebar__toggle-button">
+                <FaBars onClick={handleToggleSidebar} size={25}  style={{cursor: 'pointer'}}/>
+            </div>
+            <div ref={sidebarRef} className={`sidebar__menu ${collapsed ? 'collapsed' : ''}`}>
                 <div
                     ref={indicatorRef}
                     className="sidebar__menu__indicator"

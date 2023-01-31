@@ -1,6 +1,6 @@
 import React from 'react';
-import { Navigate } from 'react-router-dom';
-import { Layout } from '../Layout';
+import { Navigate, Outlet } from 'react-router-dom';
+import { Layout  } from '../Layout';
 
 
 export const AuthGuard = () => {
@@ -11,7 +11,7 @@ export const AuthGuard = () => {
   }else{
       isAuthenticated = false
   }
-  return isAuthenticated ? <Layout /> : <Navigate replace to="/" /> ;
+  return isAuthenticated ? <Outlet /> : <Navigate replace to="/" /> ;
 }
 
  

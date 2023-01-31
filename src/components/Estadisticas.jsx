@@ -36,7 +36,7 @@ export const Estadisticas = () => {
                 <CardBody>
                     <Box height='100px'>
                         <Stat>
-                            <StatLabel fontSize={18} color='white'>Empleados Totales <FaUsers style={{marginLeft: '80%', marginTop: '-15%'}} size={45} /></StatLabel>
+                            <StatLabel fontSize={18} color='white'>Empleados T <FaUsers style={{marginLeft: '80%', marginTop: '-15%'}} size={45} /></StatLabel>
                             <StatNumber fontSize={50} color='white'>{data['Total de empleados']}</StatNumber>
                         </Stat>
                     </Box>
