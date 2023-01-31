@@ -70,7 +70,7 @@ export const Login = () => {
       <Flex p={8} flex={1} align={'center'} justify={'center'}>
         <Stack spacing={4} w={'full'} maxW={'md'}>
           
-          <img src={logo} style={{width: '50%', marginTop: '-38%',marginLeft: '28%' }} alt="Universidad de Montemorelos"/>
+          <img src={logo} style={{width: '43%', marginTop: '-15%',marginLeft: '33%' }} alt="Universidad de Montemorelos"/>
           <Heading fontSize={'2xl'}>Iniciar Sessión </Heading>
           <FormControl id="email">
             <FormLabel>Correo Electronico</FormLabel>
