@@ -17,6 +17,7 @@ import { IoWomanOutline, IoManOutline } from "react-icons/io5";
 
 export const Estadisticas = () => {
     const [data, setData] = useState([])
+    const [screensize, setScreenSize] = useState(window.innerWidth);
     useEffect(() => {
         const datos = async () => {
             await axios.get(`${process.env.REACT_APP_URL}/info`).then(function (res) {
@@ -26,17 +27,30 @@ export const Estadisticas = () => {
         datos()
 
     }, [setData])
-    
-      console.log(data['Total de empleados'])
 
+    useEffect(() => {
+        window.addEventListener('resize', () => setScreenSize(window.innerWidth));
+        return () => window.removeEventListener('resize', () => setScreenSize(window.innerWidth));
+    }, [])
+
+    //console.log(data['Total de empleados'])
+    console.log(screensize)
     return (
         <SimpleGrid columns={5} spacingX='40px' spacingY='20px'>
-
             <Card variant='filled' backgroundColor='#2c445c'>
                 <CardBody>
-                    <Box height='100px'>
+                    <Box
+                        style={{ height: screensize > 1500 ? '110px' : '130px' }}
+                    >
                         <Stat>
-                            <StatLabel fontSize={18} color='white'>Empleados T <FaUsers style={{marginLeft: '80%', marginTop: '-15%'}} size={45} /></StatLabel>
+                            <StatLabel fontSize={18} color='white'>Empleados T
+                                <FaUsers
+                                    style={{
+                                        marginLeft: screensize > 1500 ? '80%' : '5%',
+                                        marginTop: screensize > 1500 ? '-15%' : '5%'
+                                    }} size={45}
+                                />
+                            </StatLabel>
                             <StatNumber fontSize={50} color='white'>{data['Total de empleados']}</StatNumber>
                         </Stat>
                     </Box>
@@ -45,9 +59,15 @@ export const Estadisticas = () => {
 
             <Card variant='filled' backgroundColor='#355c7d'>
                 <CardBody>
-                    <Box height='100px'>
+                    <Box style={{ height: screensize > 1500 ? '110px' : '130px' }}>
                         <Stat>
-                            <StatLabel fontSize={18} color='white'>Mexicanos <GiMexico style={{marginLeft: '76%', marginTop: '-16%'}} size={50} /></StatLabel>
+                            <StatLabel fontSize={18} color='white'>Mexicanos
+                                <GiMexico style={{
+                                    marginLeft: screensize > 1500 ? '76%' : '5%',
+                                    marginTop: screensize > 1500 ? '-16%' : '5%'
+                                }} size={45}
+                                />
+                            </StatLabel>
                             <StatNumber fontSize={50} color='white'>{data['Total Empleados Mexicanos']}</StatNumber>
                         </Stat>
                     </Box>
@@ -56,9 +76,12 @@ export const Estadisticas = () => {
 
             <Card variant='filled' backgroundColor='#725a7a '>
                 <CardBody>
-                    <Box height='100px'>
+                    <Box style={{ height: screensize > 1500 ? '110px' : '130px' }}>
                         <Stat>
-                            <StatLabel fontSize={18} color='white' >Extranjeros <GiWorld style={{marginLeft: '76%', marginTop: '-16%'}} size={50} /></StatLabel>
+                            <StatLabel fontSize={18} color='white' >Extranjeros <GiWorld style={{
+                                marginLeft: screensize > 1500 ? '76%' : '5%',
+                                marginTop: screensize > 1500 ? '-16%' : '3%'
+                            }} size={50} /></StatLabel>
                             <StatNumber fontSize={50} color='white'>{data['Total Empleados Extranjeros']}</StatNumber>
                         </Stat>
                     </Box>
@@ -67,9 +90,12 @@ export const Estadisticas = () => {
 
             <Card variant='filled' backgroundColor='#ac5c74'>
                 <CardBody>
-                    <Box height='100px'>
+                    <Box style={{ height: screensize > 1500 ? '110px' : '130px' }}>
                         <Stat>
-                            <StatLabel fontSize={18} color='white'>Hombres <IoManOutline style={{marginLeft: '85%', marginTop: '-15%'}} size={43} /></StatLabel>
+                            <StatLabel fontSize={18} color='white'>Hombres <IoManOutline style={{
+                                    marginLeft: screensize > 1500 ? '85%' : '5%',
+                                    marginTop: screensize > 1500 ? '-15%' : '5%'
+                                }}  size={43} /></StatLabel>
                             <StatNumber fontSize={50} color='white'>{data['Total Empleados Hombres']}</StatNumber>
                         </Stat>
                     </Box>
@@ -78,9 +104,12 @@ export const Estadisticas = () => {
 
             <Card variant='filled' backgroundColor='#c56c90'>
                 <CardBody>
-                    <Box height='100px'>
+                    <Box style={{ height: screensize > 1500 ? '110px' : '130px' }}>
                         <Stat>
-                            <StatLabel fontSize={18} color='white'>Mujeres <IoWomanOutline style={{marginLeft: '85%', marginTop: '-15%'}} size={43} /></StatLabel>
+                            <StatLabel fontSize={18} color='white'>Mujeres <IoWomanOutline style={{
+                                    marginLeft: screensize > 1500 ? '85%' : '5%',
+                                    marginTop: screensize > 1500 ? '-15%' : '5%'
+                                }} size={43} /></StatLabel>
                             <StatNumber fontSize={50} color='white'>{data['Total Empleados Mujeres']}</StatNumber>
                         </Stat>
                     </Box>
