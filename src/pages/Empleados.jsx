@@ -67,12 +67,12 @@ export const Empleados = () => {
   return (
     <Grid
       margin
-      h='200px'
+      h='500px'
       templateRows='repeat(1, 1fr)'
       templateColumns='repeat(5, 2fr)'
       gap={4}
     >
-      <GridItem marginTop='-12%' rowSpan={2} >
+      <GridItem rowSpan={2} >
         <Card>
           <CardHeader>
             <Heading size='md' marginBottom={4}>Empleados</Heading>
@@ -134,7 +134,7 @@ export const Empleados = () => {
           </CardBody>
         </Card>
       </GridItem>
-      <FormEmp data={obtEmpleado} />
+        <FormEmp data={obtEmpleado} />
       <GridItem colSpan={4} />
     </Grid>
   )

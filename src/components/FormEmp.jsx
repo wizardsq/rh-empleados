@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react'
 import { CreatEmp, UpdateEmp, DeleteEmp, ActivEmp } from '../api/Empleados'
-
+import { FaArrowRight, FaArrowLeft } from 'react-icons/fa'
 import {
   Input,
   Box,
@@ -13,7 +13,7 @@ import {
 }
   from '@chakra-ui/react'
 export const FormEmp = ({ data }) => {
-  
+
   //* estados de todas las variables del formulario
   const [getrol, setGetRol] = useState(false)
   const [Nomina, setNomina] = useState(data.Nomina ?? '')
@@ -52,6 +52,7 @@ export const FormEmp = ({ data }) => {
   const [Activo, setActivo] = useState(data.Activo ?? '')
   const [FechaR, setFechaR] = useState(data.FechaRetiro ?? '')
   const [CausaR, setCausaR] = useState(data.CausaRetiro ?? '')
+  const [currentStep, setCurrentStep] = useState(1)
   const toast = useToast()
 
 
@@ -119,34 +120,34 @@ export const FormEmp = ({ data }) => {
   const HandleUpdateEmp = async (e) => {
     e.preventDefault()
     const id = data.id
-     UpdateEmp({
+    UpdateEmp({
       id, Nomina, Nombre, Nombres, Primerapellido, Segundoapellido, Correo, Genero, Contrato, Grado, Rectoria,
       Facultad, Centro, Puesto, Jefe, Fecha, SeguroS, Curp, Nacionalidad, EstadoCivil, Direccion, Telefono,
       Nivel1, Institucion1, Titulo1, Nivel2, Institucion2, Titulo2, Nivel3, Institucion3, Titulo3, TipoContrato,
       Edad, Activo, Aservicio, FechaR, CausaR
     }).then(function (result) {
       console.log(result)
-        if(result == '200'){
-          toast({
-            title: 'Actualización Correcto',
-            description: 'Empleado actualizado correctamente',
-            status: 'success',
-            duration: 4000,
-            position: 'top',
-          })
-          setTimeout(function(){
-            window.location.reload()
-          }, 2000);
-          
-        }else{
-          toast({
-              title: 'Actualización Incorrecta',
-              description: 'Error al actualizar el empleado',
-              status: 'error',
-              duration: 4000,
-              position:'top',
-          })
-        }
+      if (result == '200') {
+        toast({
+          title: 'Actualización Correcto',
+          description: 'Empleado actualizado correctamente',
+          status: 'success',
+          duration: 4000,
+          position: 'top',
+        })
+        setTimeout(function () {
+          window.location.reload()
+        }, 2000);
+
+      } else {
+        toast({
+          title: 'Actualización Incorrecta',
+          description: 'Error al actualizar el empleado',
+          status: 'error',
+          duration: 4000,
+          position: 'top',
+        })
+      }
     })
 
   }
@@ -157,27 +158,27 @@ export const FormEmp = ({ data }) => {
     const Activo = 1
     DeleteEmp({ id, Activo }).then(function (result) {
       console.log(result)
-        if(result == '200'){
-          toast({
-            title: 'Desactivación Correcto',
-            description: 'Empleado Desactivado correctamente',
-            status: 'success',
-            duration: 4000,
-            position: 'top',
-          })
-          setTimeout(function(){
-            window.location.reload()
-          }, 2000);
-          
-        }else{
-          toast({
-              title: 'Actualización Incorrecta',
-              description: 'Error al actualizar el empleado',
-              status: 'error',
-              duration: 4000,
-              position:'top',
-          })
-        }
+      if (result == '200') {
+        toast({
+          title: 'Desactivación Correcto',
+          description: 'Empleado Desactivado correctamente',
+          status: 'success',
+          duration: 4000,
+          position: 'top',
+        })
+        setTimeout(function () {
+          window.location.reload()
+        }, 2000);
+
+      } else {
+        toast({
+          title: 'Actualización Incorrecta',
+          description: 'Error al actualizar el empleado',
+          status: 'error',
+          duration: 4000,
+          position: 'top',
+        })
+      }
     })
 
   }
@@ -188,339 +189,397 @@ export const FormEmp = ({ data }) => {
     const Activo = 0
     ActivEmp({ id, Activo }).then(function (result) {
       console.log(result)
-        if(result == '200'){
-          toast({
-            title: 'Activación Correcta',
-            description: 'Empleado Activado correctamente',
-            status: 'success',
-            duration: 4000,
-            position: 'top',
-          })
-          setTimeout(function(){
-            window.location.reload()
-          }, 2000);
-          
-        }else{
-          toast({
-              title: 'Actualización Incorrecta',
-              description: 'Error al actualizar el empleado',
-              status: 'error',
-              duration: 4000,
-              position:'top',
-          })
-        }
+      if (result == '200') {
+        toast({
+          title: 'Activación Correcta',
+          description: 'Empleado Activado correctamente',
+          status: 'success',
+          duration: 4000,
+          position: 'top',
+        })
+        setTimeout(function () {
+          window.location.reload()
+        }, 2000);
+
+      } else {
+        toast({
+          title: 'Actualización Incorrecta',
+          description: 'Error al actualizar el empleado',
+          status: 'error',
+          duration: 4000,
+          position: 'top',
+        })
+      }
     })
+  }
+
+  const previousStep = () => {
+    setCurrentStep(currentStep - 1)
+  }
+
+  const nextStep = () => {
+    setCurrentStep(currentStep + 1)
   }
 
 
   return (
     <>
-      <Stack spacing={80} marginTop='-6%' maxW={'lg'} >
+      <Stack spacing={80} maxW='2xl ' >
         <Box
           rounded={'lg'}
           boxShadow={'lg'}
-          width="154%"
+          width="200%"
+          height='704px'
           p={6}>
-          <Stack >
-            <HStack py={2} spacing={5}>
-              <Box>
-                <FormControl isRequired>
-                  <FormLabel>Nomina</FormLabel>
-                  <Input width={110}  type="number" value={Nomina} onChange={((e) => setNomina(e.target.value))} />
-                </FormControl>
-              </Box>
+          {currentStep == 1 && (
+            <>
+              <HStack py={2} spacing={5}>
+                <Box>
+                  <FormControl isRequired>
+                    <FormLabel>Nomina</FormLabel>
+                    <Input width='100%' type="number" value={Nomina} onChange={((e) => setNomina(e.target.value))} />
+                  </FormControl>
+                </Box>
 
-              <Box>
-                <FormControl isRequired>
-                  <FormLabel>Nombre</FormLabel>
-                  <Input width={110}   type="text" value={Nombre} onChange={((e) => setNombre(e.target.value))} />
-                </FormControl>
-              </Box>
+                <Box>
+                  <FormControl isRequired>
+                    <FormLabel>Nombre</FormLabel>
+                    <Input width='100%' type="text" value={Nombre} onChange={((e) => setNombre(e.target.value))} />
+                  </FormControl>
+                </Box>
 
-              <Box>
-                <FormControl >
-                  <FormLabel>Nombres</FormLabel>
-                  <Input width={110}   type="text" value={Nombres} onChange={((e) => setNombres(e.target.value))} />
-                </FormControl>
-              </Box>
+                <Box>
+                  <FormControl>
+                    <FormLabel>Nombres</FormLabel>
+                    <Input width='100%' type="text" value={Nombres} onChange={((e) => setNombres(e.target.value))} />
+                  </FormControl>
+                </Box>
 
-              <Box>
-                <FormControl isRequired>
-                  <FormLabel>Primer Apellido</FormLabel>
-                  <Input width={110}   type="text" value={Primerapellido} onChange={((e) => setPrimerapellido(e.target.value))} />
-                </FormControl>
-              </Box>
 
-              <Box>
-                <FormControl >
-                  <FormLabel>Segundo Apellido</FormLabel>
-                  <Input width={110}   type="text" value={Segundoapellido} onChange={((e) => setSegundoapellido(e.target.value))} />
-                </FormControl>
-              </Box>
-            </HStack>
-            {/*  */}
-            <HStack py={1} spacing={5}>
-              <Box>
-                <FormControl  >
-                  <FormLabel>Correo</FormLabel>
-                  <Input width={110}   type="text" value={Correo} onChange={((e) => setCorreo(e.target.value))} />
-                </FormControl>
-              </Box>
+              </HStack>
 
-              <Box>
-                <FormControl >
-                  <FormLabel>Genero</FormLabel>
-                  <Input width={110}   type="text" value={Genero} onChange={((e) => setGenero(e.target.value))} />
-                </FormControl>
-              </Box>
+              <HStack py={1} spacing={5}>
+                <Box>
+                  <FormControl isRequired>
+                    <FormLabel>Primer Apellido</FormLabel>
+                    <Input width='100%' type="text" value={Primerapellido} onChange={((e) => setPrimerapellido(e.target.value))} />
+                  </FormControl>
+                </Box>
 
-              <Box>
-                <FormControl >
-                  <FormLabel>Tipo contrato</FormLabel>
-                  <Input width={110}   type="text" value={Contrato} onChange={((e) => setContrato(e.target.value))} />
-                </FormControl>
-              </Box>
+                <Box>
+                  <FormControl>
+                    <FormLabel>Segundo Apellido</FormLabel>
+                    <Input width='100%' type="text" value={Segundoapellido} onChange={((e) => setSegundoapellido(e.target.value))} />
+                  </FormControl>
+                </Box>
 
-              <Box>
-                <FormControl >
-                  <FormLabel>Grado Academico</FormLabel>
-                  <Input width={110}   type="text" value={Grado} onChange={((e) => setGrado(e.target.value))} />
-                </FormControl>
-              </Box>
+                <Box>
+                  <FormControl>
+                    <FormLabel>Correo</FormLabel>
+                    <Input width='100%' type="text" value={Correo} onChange={((e) => setCorreo(e.target.value))} />
+                  </FormControl>
+                </Box>
 
-              <Box>
-                <FormControl >
-                  <FormLabel>Rectoria</FormLabel>
-                  <Input width={110}   type="text" value={Rectoria} onChange={((e) => setRectoria(e.target.value))} />
-                </FormControl>
-              </Box>
-            </HStack>
-            {/*  */}
-            <HStack py={2} spacing={5}>
-              <Box>
-                <FormControl >
-                  <FormLabel>Facultad/Dep</FormLabel>
-                  <Input width={110}   type="text" value={Facultad} onChange={((e) => setFacultad(e.target.value))} />
 
-                </FormControl>
-              </Box>
+              </HStack>
 
-              <Box>
-                <FormControl >
-                  <FormLabel>Centro trabajo</FormLabel>
-                  <Input width={110}   type="text" value={Centro} onChange={((e) => setCentro(e.target.value))} />
-                </FormControl>
-              </Box>
+              <HStack py={2} spacing={5}>
+                <Box>
+                  <FormControl>
+                    <FormLabel>Genero</FormLabel>
+                    <Input width='100%' type="text" value={Genero} onChange={((e) => setGenero(e.target.value))} />
+                  </FormControl>
+                </Box>
 
-              <Box>
-                <FormControl >
-                  <FormLabel>Puesto</FormLabel>
-                  <Input width={110}   type="text" value={Puesto} onChange={((e) => setPuesto(e.target.value))} />
-                </FormControl>
-              </Box>
+                <Box>
+                  <FormControl>
+                    <FormLabel>Tipo contrato</FormLabel>
+                    <Input width='100%' type="text" value={Contrato} onChange={((e) => setContrato(e.target.value))} />
+                  </FormControl>
+                </Box>
 
-              <Box>
-                <FormControl >
-                  <FormLabel>Jefe inmediato</FormLabel>
-                  <Input width={110}   type="text" value={Jefe} onChange={((e) => setJefe(e.target.value))} />
-                </FormControl>
-              </Box>
+                <Box>
+                  <FormControl>
+                    <FormLabel>Grado Academico</FormLabel>
+                    <Input width='100%' type="text" value={Grado} onChange={((e) => setGrado(e.target.value))} />
+                  </FormControl>
+                </Box>
 
-              <Box>
-                <FormControl >
-                  <FormLabel>Fecha nacimiento</FormLabel>
-                  <Input width={130}   type="text" value={Fecha || ""} onChange={((e) => setFecha(e.target.value))} />
-                </FormControl>
-              </Box>
-            </HStack>
 
-            {/*  */}
-            <HStack py={2} spacing={5}>
-              <Box>
-                <FormControl  >
-                  <FormLabel>NSS</FormLabel>
-                  <Input width={114}   type="number" value={SeguroS || ""} onChange={((e) => setSeguroS(e.target.value))} />
-                </FormControl>
-              </Box>
+              </HStack>
 
-              <Box>
-                <FormControl >
-                  <FormLabel>CURP</FormLabel>
-                  <Input width={114}   type="text" value={Curp || ""} onChange={((e) => setCurp(e.target.value))} />
-                </FormControl>
-              </Box>
+              <HStack py={2} spacing={5}>
+                <Box>
+                  <FormControl>
+                    <FormLabel>Rectoria</FormLabel>
+                    <Input width='100%' type="text" value={Rectoria} onChange={((e) => setRectoria(e.target.value))} />
+                  </FormControl>
+                </Box>
 
-              <Box>
-                <FormControl >
-                  <FormLabel>Nacionalidad</FormLabel>
-                  <Input width={114}   type="text" value={Nacionalidad} onChange={((e) => setNacionalidad(e.target.value))} />
-                </FormControl>
-              </Box>
+                <Box>
+                  <FormControl>
+                    <FormLabel>Facultad/Dep</FormLabel>
+                    <Input width='100%' type="text" value={Facultad} onChange={((e) => setFacultad(e.target.value))} />
 
-              <Box>
-                <FormControl >
-                  <FormLabel>Estado civil</FormLabel>
-                  <Input width={114}   type="text" value={EstadoCivil} onChange={((e) => setEstadoCivil(e.target.value))} />
-                </FormControl>
-              </Box>
+                  </FormControl>
+                </Box>
 
-              <Box>
-                <FormControl >
-                  <FormLabel>Direccion</FormLabel>
-                  <Input width={114}   type="text" value={Direccion} onChange={((e) => setDireccion(e.target.value))} />
-                </FormControl>
-              </Box>
-            </HStack>
+                <Box>
+                  <FormControl>
+                    <FormLabel>Centro trabajo</FormLabel>
+                    <Input width='100%' type="text" value={Centro} onChange={((e) => setCentro(e.target.value))} />
+                  </FormControl>
+                </Box>
 
-            {/*  */}
-            <HStack py={2} spacing={5}>
-              <Box>
-                <FormControl  >
-                  <FormLabel>Telefono</FormLabel>
-                  <Input width={110}   type="text" value={Telefono} onChange={((e) => setTelefono(e.target.value))} />
-                </FormControl>
-              </Box>
 
-              <Box>
-                <FormControl >
-                  <FormLabel>Licenciatura/Técnica</FormLabel>
-                  <Input width={140}   type="text" value={Nivel1} onChange={((e) => setNivel1(e.target.value))} />
-                </FormControl>
-              </Box>
+              </HStack>
 
-              <Box>
-                <FormControl >
-                  <FormLabel>Nombre inst.</FormLabel>
-                  <Input width={110}   type="text" value={Institucion1} onChange={((e) => setInstitucion1(e.target.value))} />
-                </FormControl>
-              </Box>
+              <HStack py={2} spacing={5}>
+                <Box>
+                  <FormControl>
+                    <FormLabel>Puesto</FormLabel>
+                    <Input width='100%' type="text" value={Puesto} onChange={((e) => setPuesto(e.target.value))} />
+                  </FormControl>
+                </Box>
 
-              <Box>
-                <FormControl >
-                  <FormLabel>Nombre titulo</FormLabel>
-                  <Input width={110}   type="text" value={Titulo1} onChange={((e) => setTitulo1(e.target.value))} />
-                </FormControl>
-              </Box>
+                <Box>
+                  <FormControl>
+                    <FormLabel>Jefe inmediato</FormLabel>
+                    <Input width='100%' type="text" value={Jefe} onChange={((e) => setJefe(e.target.value))} />
+                  </FormControl>
+                </Box>
 
-              <Box>
-                <FormControl >
-                  <FormLabel>Maestria</FormLabel>
-                  <Input width={90}   type="text" value={Nivel2} onChange={((e) => setNivel2(e.target.value))} />
-                </FormControl>
-              </Box>
-            </HStack>
+                <Box>
+                  <FormControl>
+                    <FormLabel>Fecha nacimiento</FormLabel>
+                    <Input width='100%' type="text" value={Fecha || ""} onChange={((e) => setFecha(e.target.value))} />
+                  </FormControl>
+                </Box>
+              </HStack>
 
-            {/*  */}
-            <HStack py={2} spacing={5}>
-              <Box>
-                <FormControl  >
-                  <FormLabel>Nombre inst.</FormLabel>
-                  <Input width={114}   type="text" value={Institucion2} onChange={((e) => setInstitucion2(e.target.value))} />
-                </FormControl>
-              </Box>
+              <HStack py={2} >
+                <Box>
+                  <FormControl>
+                    <FormLabel>NSS</FormLabel>
+                    <Input width='95%' type="number" value={SeguroS || ""} onChange={((e) => setSeguroS(e.target.value))} />
+                  </FormControl>
+                </Box>
+                <Box>
+                  <FormControl>
+                    <FormLabel>CURP</FormLabel>
+                    <Input width='100%' type="text" value={Curp || ""} onChange={((e) => setCurp(e.target.value))} />
+                  </FormControl>
+                </Box>
 
-              <Box>
-                <FormControl >
-                  <FormLabel>Nombre titulo</FormLabel>
-                  <Input width={114}   type="text" value={Titulo2} onChange={((e) => setTitulo2(e.target.value))} />
-                </FormControl>
-              </Box>
+                <Box>
+                  <FormControl>
+                    <FormLabel>Nacionalidad</FormLabel>
+                    <Input width='100%' type="text" value={Nacionalidad} onChange={((e) => setNacionalidad(e.target.value))} />
+                  </FormControl>
+                </Box>
 
-              <Box>
-                <FormControl >
-                  <FormLabel>Doctorado</FormLabel>
-                  <Input width={114}   type="text" value={Nivel3} onChange={((e) => setNivel3(e.target.value))} />
-                </FormControl>
-              </Box>
+                <Box>
+                  <FormControl>
+                    <FormLabel>Estado civil</FormLabel>
+                    <Input width='98%' type="text" value={EstadoCivil} onChange={((e) => setEstadoCivil(e.target.value))} />
+                  </FormControl>
+                </Box>
+              </HStack >
 
-              <Box>
-                <FormControl >
-                  <FormLabel>Nombre inst.</FormLabel>
-                  <Input width={114}   type="text" value={Institucion3} onChange={((e) => setInstitucion3(e.target.value))} />
-                </FormControl>
-              </Box>
+              <HStack py={2} spacing={5}>
+                <Box>
+                  <FormControl>
+                    <FormLabel>Direccion</FormLabel>
+                    <Input width='200%' type="text" value={Direccion} onChange={((e) => setDireccion(e.target.value))} />
+                  </FormControl>
+                </Box>
+              </HStack>
+            </>
+          )}
 
-              <Box>
-                <FormControl >
-                  <FormLabel>Nombre titulo</FormLabel>
-                  <Input width={114}   type="text" value={Titulo3} onChange={((e) => setTitulo3(e.target.value))} />
-                </FormControl>
-              </Box>
-            </HStack>
+          {currentStep == 2 && (
+            <>
+              <HStack py={2} spacing={5}>
+                <Box>
+                  <FormControl>
+                    <FormLabel>Telefono</FormLabel>
+                    <Input width='100%' type="text" value={Telefono} onChange={((e) => setTelefono(e.target.value))} />
+                  </FormControl>
+                </Box>
 
-            {/*  */}
-            <HStack py={2} spacing={5}>
-              <Box>
-                <FormControl  >
-                  <FormLabel style={{ whiteSpace: 'nowrap' }}>Tipo contrato</FormLabel>
-                  <Input width={110}   type="text" value={TipoContrato} onChange={((e) => setTipoContrato(e.target.value))} />
-                </FormControl>
-              </Box>
+                <Box>
+                  <FormControl>
+                    <FormLabel >Tipo contrato</FormLabel>
+                    <Input width='100%' type="text" value={TipoContrato} onChange={((e) => setTipoContrato(e.target.value))} />
+                  </FormControl>
+                </Box>
 
-              <Box>
-                <FormControl isRequired>
-                  <FormLabel>Edad</FormLabel>
-                  <Input width={110}   type="text" value={Edad || ""} onChange={((e) => setEdad(e.target.value))} />
-                </FormControl>
-              </Box>
+                <Box>
+                  <FormControl isRequired>
+                    <FormLabel>Edad</FormLabel>
+                    <Input width='89%' type="text" value={Edad || ""} onChange={((e) => setEdad(e.target.value))} />
+                  </FormControl>
+                </Box>
+                {
+                  data.Activo == 0 ? (
+                    <>
+                      <Box>
+                        <FormControl >
+                          <FormLabel >Años servicio</FormLabel>
+                          <Input width='100%' type="text" value={Aservicio || ""} onChange={((e) => setAservicio(e.target.value))} />
+                        </FormControl>
+                      </Box>
+                    </>
+                  ) : (
+                    <>
+                    </>
+                  )
+                }
+              </HStack>
+              <HStack py={2} spacing={5}>
 
-              <Box>
-                <FormControl >
-                  <FormLabel style={{ whiteSpace: 'nowrap' }}>Años servicio</FormLabel>
-                  <Input width={110}   type="text" value={Aservicio || ""} onChange={((e) => setAservicio(e.target.value))} />
-                </FormControl>
-              </Box>
-              {
-                data.Activo == 1 ? (
+                {
+                  data.Activo == 1 ? (
+                    <>
+                      <Box>
+                        <FormControl >
+                          <FormLabel >Años servicio</FormLabel>
+                          <Input width='100%' type="text" value={Aservicio || ""} onChange={((e) => setAservicio(e.target.value))} />
+                        </FormControl>
+                      </Box>
+                      <Box>
+                        <FormControl >
+                          <FormLabel >Fecha Retiro</FormLabel>
+                          <Input width='100%' type="text" value={FechaR} onChange={((e) => setFechaR(e.target.value))} />
+                        </FormControl>
+                      </Box>
+                      <Box>
+                        <FormControl >
+                          <FormLabel >Causa Retiro</FormLabel>
+                          <Input width='89%' type="text" value={CausaR} onChange={((e) => setCausaR(e.target.value))} />
+                        </FormControl>
+                      </Box>
+                    </>
+                  ) : (
+                    <></>
+                  )
+                }
+              </HStack>
+
+              <HStack py={2} spacing={5}>
+                <Box>
+                  <FormControl >
+                    <FormLabel>Licenciatura/Técnica</FormLabel>
+                    <Input width='100%' type="text" value={Nivel1} onChange={((e) => setNivel1(e.target.value))} />
+                  </FormControl>
+                </Box>
+
+                <Box>
+                  <FormControl >
+                    <FormLabel>Nombre inst.</FormLabel>
+                    <Input width='100%' type="text" value={Institucion1} onChange={((e) => setInstitucion1(e.target.value))} />
+                  </FormControl>
+                </Box>
+
+                <Box>
+                  <FormControl >
+                    <FormLabel>Nombre titulo</FormLabel>
+                    <Input width='118%' type="text" value={Titulo1} onChange={((e) => setTitulo1(e.target.value))} />
+                  </FormControl>
+                </Box>
+              </HStack>
+
+              <HStack py={2} spacing={5}>
+                <Box>
+                  <FormControl >
+                    <FormLabel>Maestria</FormLabel>
+                    <Input width='100%' type="text" value={Nivel2} onChange={((e) => setNivel2(e.target.value))} />
+                  </FormControl>
+                </Box>
+                <Box>
+                  <FormControl  >
+                    <FormLabel>Nombre inst.</FormLabel>
+                    <Input width='100%' type="text" value={Institucion2} onChange={((e) => setInstitucion2(e.target.value))} />
+                  </FormControl>
+                </Box>
+
+                <Box>
+                  <FormControl >
+                    <FormLabel>Nombre titulo</FormLabel>
+                    <Input width='118%' type="text" value={Titulo2} onChange={((e) => setTitulo2(e.target.value))} />
+                  </FormControl>
+                </Box>
+              </HStack>
+
+              <HStack py={2} spacing={5}>
+                <Box>
+                  <FormControl >
+                    <FormLabel>Doctorado</FormLabel>
+                    <Input width='100%' type="text" value={Nivel3} onChange={((e) => setNivel3(e.target.value))} />
+                  </FormControl>
+                </Box>
+
+                <Box>
+                  <FormControl >
+                    <FormLabel>Nombre inst.</FormLabel>
+                    <Input width='100%' type="text" value={Institucion3} onChange={((e) => setInstitucion3(e.target.value))} />
+                  </FormControl>
+                </Box>
+
+                <Box>
+                  <FormControl >
+                    <FormLabel>Nombre titulo</FormLabel>
+                    <Input width='118%' type="text" value={Titulo3} onChange={((e) => setTitulo3(e.target.value))} />
+                  </FormControl>
+                </Box>
+              </HStack>
+
+              <HStack py={2} spacing={5}>
+                {getrol &&
                   <>
-                    <Box>
-                      <FormControl >
-                        <FormLabel style={{ whiteSpace: 'nowrap' }}>Fecha Retiro</FormLabel>
-                        <Input width={110}   type="text" value={FechaR} onChange={((e) => setFechaR(e.target.value))} />
-                      </FormControl>
-                    </Box>
-                    <Box>
-                      <FormControl >
-                        <FormLabel style={{ whiteSpace: 'nowrap' }}>Causa Retiro</FormLabel>
-                        <Input width={110}   type="text" value={CausaR} onChange={((e) => setCausaR(e.target.value))} />
-                      </FormControl>
-                    </Box>
-                  </>
-                ) : (
-                  <></>
-                )
-              }
-              {getrol &&
-                <>
-                  {
-                    !data.Nomina ?
-                      <Box>
-                        <Button marginTop="18%" width={40} colorScheme='green' onClick={HandleSubmitEmp}>Generar empleado</Button>
-                      </Box>
-                      :
-                      <Box>
-                        <Button marginTop="28%" width='100px' colorScheme='facebook' onClick={HandleUpdateEmp}>Actualizar </Button>
-                      </Box>
-                  }
-                  {
-                    data.Activo == 0 ?
-                      <Box>
-                        <Button marginTop="28%" width='100px' colorScheme='red' onClick={HandleDeletEmp}>Desactivar</Button>
-                      </Box>
-                      : data.Activo == 1 ?
+                    {
+                      !data.Nomina ?
                         <Box>
-                          <Button marginTop="28%" width='100px' colorScheme='whatsapp' onClick={HandleActivEmp}>Activar </Button>
+                          <Button marginTop="18%" width={40} colorScheme='green' onClick={HandleSubmitEmp}>Generar empleado</Button>
                         </Box>
                         :
-                        <> </>
-                  }
+                        <Box>
+                          <Button marginTop="28%" width='100px' colorScheme='facebook' onClick={HandleUpdateEmp}>Actualizar </Button>
+                        </Box>
+                    }
+                    {
+                      data.Activo == 0 ?
+                        <Box>
+                          <Button marginTop="28%" width='100px' colorScheme='red' onClick={HandleDeletEmp}>Desactivar</Button>
+                        </Box>
+                        : data.Activo == 1 ?
+                          <Box>
+                            <Button marginTop="28%" width='100px' colorScheme='whatsapp' onClick={HandleActivEmp}>Activar </Button>
+                          </Box>
+                          :
+                          <> </>
+                    }
 
-                </>
-              }
-            </HStack>
-          </Stack>
+                  </>
+                }
+
+              </HStack>
+            </>
+          )}
+
+          {currentStep !== 1 && (
+            <Button type="button" style={{ marginTop: '3%', width: '25%', }} onClick={previousStep}>
+              <FaArrowLeft style={{ marginTop: '1%' }} />&nbsp; Pagina anterior
+            </Button>
+          )}
+          {currentStep !== 2 && (
+            <Button type="button" style={{ marginTop: '3%', width: '22%', marginLeft: '77.9%' }} onClick={nextStep}>
+              Siguiente pagina &nbsp;<FaArrowRight style={{ marginTop: '3%' }} />
+            </Button>
+          )}
+
         </Box>
       </Stack >
-    </>
+    </ >
   )
 }

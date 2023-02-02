@@ -43,7 +43,7 @@ export const Estadisticas = () => {
                         style={{ height: screensize > 1500 ? '110px' : '130px' }}
                     >
                         <Stat>
-                            <StatLabel fontSize={18} color='white'>Empleados T
+                            <StatLabel fontSize={18} color='white'>Empleados
                                 <FaUsers
                                     style={{
                                         marginLeft: screensize > 1500 ? '80%' : '5%',
