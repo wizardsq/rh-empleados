@@ -114,8 +114,8 @@ export const Empleados = () => {
                     >
                       <ListItem style={{ textAlign: "justify" }}>
                         <Text>
-                            {emp.Nombre} {emp.Nombres} &nbsp; <br />
-                            {emp.Primer_apellido} { emp.Segundo_apellido}&nbsp;
+                            {emp.Nombre} {emp.Nombres}&nbsp; <br />
+                            {emp.Primer_apellido} { emp.Segundo_apellido}&nbsp;&nbsp;&nbsp;
                         </Text>
                       </ListItem>
                     </Button>

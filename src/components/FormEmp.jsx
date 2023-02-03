@@ -9,7 +9,8 @@ import {
   FormLabel,
   HStack,
   Stack,
-  useToast
+  useToast,
+  Select
 }
   from '@chakra-ui/react'
 export const FormEmp = ({ data }) => {
@@ -287,7 +288,11 @@ export const FormEmp = ({ data }) => {
                 <Box>
                   <FormControl>
                     <FormLabel>Genero</FormLabel>
-                    <Input width='100%' type="text" value={Genero} onChange={((e) => setGenero(e.target.value))} />
+                    <Select width='100%' value={Genero} onChange={(e) => setGenero(e.target.value)}>
+                      <option value="">Elige una Opción</option>
+                      <option value='F'>F</option>
+                      <option value='M'>M</option>
+                    </Select>
                   </FormControl>
                 </Box>
 
@@ -312,7 +317,14 @@ export const FormEmp = ({ data }) => {
                 <Box>
                   <FormControl>
                     <FormLabel>Rectoria</FormLabel>
-                    <Input width='100%' type="text" value={Rectoria} onChange={((e) => setRectoria(e.target.value))} />
+                    <Select width='100%' value={Rectoria} onChange={((e) => setRectoria(e.target.value))}>
+                      <option value="">Elige una Opción</option>
+                      <option value='RECTORIA'>RECTORIA</option>
+                      <option value='RVRF'>RVRF</option>
+                      <option value='VRA'>VRA</option>
+                      <option value='VRE'>VRE</option>
+                      <option value='VRF'>VRF</option>
+                    </Select>
                   </FormControl>
                 </Box>
 
@@ -352,7 +364,7 @@ export const FormEmp = ({ data }) => {
                 <Box>
                   <FormControl>
                     <FormLabel>Fecha nacimiento</FormLabel>
-                    <Input width='100%' type="text" value={Fecha || ""} onChange={((e) => setFecha(e.target.value))} />
+                    <Input width='100%' type="text" placeholder='yyyy-mm-dd' value={Fecha || ""} onChange={((e) => setFecha(e.target.value))} />
                   </FormControl>
                 </Box>
               </HStack>
@@ -381,7 +393,14 @@ export const FormEmp = ({ data }) => {
                 <Box>
                   <FormControl>
                     <FormLabel>Estado civil</FormLabel>
-                    <Input width='98%' type="text" value={EstadoCivil} onChange={((e) => setEstadoCivil(e.target.value))} />
+                    <Select width='98%' value={EstadoCivil} onChange={((e) => setEstadoCivil(e.target.value))}>
+                      <option value="">Elige una Opción</option>
+                      <option value='SOLTERO'>Soltero</option>
+                      <option value='CASADO'>Casado</option>
+                      <option value='DIVORCIADO'>Divorciado</option>
+                      <option value='SEPARADO'>Separado</option>
+                      <option value='VIUDO'>Viudo</option>
+                    </Select>
                   </FormControl>
                 </Box>
               </HStack >
