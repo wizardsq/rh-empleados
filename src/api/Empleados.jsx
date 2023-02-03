@@ -4,24 +4,6 @@ import axios from 'axios'
 
 //import {ToastContainer ,toast } from 'react-toastify';
 
-export async function LoginUser({ correo, passw }) {
-    
-    await axios.post(`${process.env.REACT_APP_URL}/login`, {
-        correo,
-        passw
-    })
-        .then(function (res) {
-            localStorage.setItem('auth', 'true')
-            localStorage.setItem('user', JSON.stringify(res.data));
-            const user = localStorage.getItem('user');
-            if (user != null) {
-                window.location.href = "/home"
-            }
-        })
-        .catch(function (error) {
-            console.log(error)
-        })
-}
 
 
 export async function CreatEmp({ Nomina, Nombre, Nombres, Primerapellido, Segundoapellido, Correo, Genero, Contrato, Grado, Rectoria,

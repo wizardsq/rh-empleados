@@ -16,17 +16,23 @@ import {
   AlertIcon,
   AlertTitle,
   AlertDescription,
+  useToast
 } from '@chakra-ui/react';
 import { useState } from 'react';
+import {CreateUser} from '../api/User'
 import { ViewIcon, ViewOffIcon } from '@chakra-ui/icons';
 import '../assets/css/createus.css'
 export const CreateUs = () => {
+  const [Nombre, setNombre] = useState('')
+  const [Correo, setCorreo] = useState('')
+  const [rol, setRol] = useState()
+  const [password, setPassword] = useState('');
   const [showPassword, setShowPassword] = useState(false);
   const [showPassword1, setShowPassword1] = useState(false);
   const [verifyPassword, setVerifyPassword] = useState('');
-  const [password, setPassword] = useState('');
   const [error, setError] = useState('');
-  const [rol, setRol] = useState()
+
+  const toast = useToast()
 
   function handleVerifyPasswordChange(e) {
     setVerifyPassword(e.target.value);
@@ -35,9 +41,32 @@ export const CreateUs = () => {
     } else {
       setError('');
     }
+  } 
+
+  const HandleSumbit = (e) => {
+    e.preventDefault()
+    CreateUser({Nombre, Correo, rol,password})
+    .then(function(result) {
+      if (result == '200') {
+        toast({
+          title: 'Creación Correcto',
+          description: 'Usaurio creado correctamente',
+          status: 'success',
+          duration: 4000,
+          position: 'top',
+        })
+      } else {
+        toast({
+          title: 'Creación Incorrecta',
+          description: 'Error al Crear el usuario',
+          status: 'error',
+          duration: 4000,
+          position: 'top',
+        })
+      }
+
+    })
   }
-
-
 
   return (
     <Flex
@@ -65,13 +94,21 @@ export const CreateUs = () => {
               <Box>
                 <FormControl id="firstName" isRequired>
                   <FormLabel>Nombre de usuario</FormLabel>
-                  <Input type="text" />
+                  <Input 
+                  value={Nombre}
+                  type="text" 
+                  onChange={(e) => setNombre(e.target.value)}
+                  />
                 </FormControl>
               </Box>
               <Box>
                 <FormControl id="lastName">
                   <FormLabel>Correo Electronico</FormLabel>
-                  <Input type="text" />
+                  <Input 
+                  value={Correo}
+                  type="text" 
+                  onChange={(e)=> setCorreo(e.target.value)}
+                  />
                 </FormControl>
               </Box>
             </HStack>
@@ -149,7 +186,8 @@ export const CreateUs = () => {
                 color={'white'}
                 _hover={{
                   bg: 'blue.400',
-                }}>
+                }}
+                onClick={HandleSumbit}>
                 Registrar
               </Button>
             </Stack>

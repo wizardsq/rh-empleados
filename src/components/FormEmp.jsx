@@ -573,7 +573,7 @@ export const FormEmp = ({ data }) => {
             </Button>
           )}
           {currentStep !== 2 && (
-            <Button type="button" style={{ marginTop: '3%', width: '22%', marginLeft: '77.9%' }} onClick={nextStep}>
+            <Button type="button" style={{ marginTop: '3%', width: '29%', marginLeft: '70%' }} onClick={nextStep}>
               Siguiente pagina &nbsp;<FaArrowRight style={{ marginTop: '3%' }} />
             </Button>
           )}

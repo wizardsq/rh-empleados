@@ -224,7 +224,7 @@ export const Crearempleado = () => {
               }
             </Tr>
           </Thead>
-          <Tbody>
+          <Tbody className='table'>
             {
               currentData
                 .filter(dato => !filter.Genero || dato.Genero === filter.Genero)
@@ -244,8 +244,8 @@ export const Crearempleado = () => {
                     dato.Grado_academico.toUpperCase().includes(filter.Grado_academico.toUpperCase()))))
                 .filter(dato => !filter.Fecha_Nacimiento || getMonthFromDate(dato.Fecha_Nacimiento) === parseInt(filter.Fecha_Nacimiento))
                 .filter(dato => !filter.T_cont_administrativo || dato.T_cont_administrativo === filter.T_cont_administrativo)
-                .map((datos) => (
-                  <Tr key={datos.id}>
+                .map((datos, index) => (
+                  <Tr key={index}>
                     <Td>{datos.id}</Td>
                     <Td>{datos.Nomina}</Td>
                     <Td>{datos.Nombre}</Td>

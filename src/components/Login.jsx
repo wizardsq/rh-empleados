@@ -20,7 +20,7 @@ import { ViewIcon, ViewOffIcon } from '@chakra-ui/icons';
 
 
 // Importaciones locales
-import {LoginUser} from '../api/Empleados'
+import {LoginUser} from '../api/User'
 //Importaciones de React
 import { useState } from 'react';
 //import { Navigate } from 'react-router-dom';
@@ -34,8 +34,8 @@ export const Login = () => {
   const [showPassword, setShowPassword] = useState(false);
   const toast = useToast()
 
-  const HandleSubmit = (event) => {
-    event.preventDefault()
+  const HandleSubmit = (e) => {
+    e.preventDefault()
     
     
     LoginUser({ correo, passw}).then(function (){

@@ -33,8 +33,6 @@ export const Estadisticas = () => {
         return () => window.removeEventListener('resize', () => setScreenSize(window.innerWidth));
     }, [])
 
-    //console.log(data['Total de empleados'])
-    console.log(screensize)
     return (
         <SimpleGrid columns={5} spacingX='40px' spacingY='20px'>
             <Card variant='filled' backgroundColor='#2c445c'>

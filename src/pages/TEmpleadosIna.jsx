@@ -59,7 +59,7 @@ export const TEmpleadosIna = () => {
     <>
       <Button key='exportexcel' rightIcon={<RiFileExcel2Line   size="24px" />} colorScheme='whatsapp' onClick={HandleExport}>Exportar a excel</Button>
       <TableContainer>
-        <Table>
+        <Table className='table'>
           <Thead>
             <Tr>
               {
@@ -73,7 +73,7 @@ export const TEmpleadosIna = () => {
           </Thead>
           <Tbody>
             {
-             data
+             currentData
                 .map((datos) => (
                   <Tr key={datos.id}>
                     <Td>{datos.id}</Td>
@@ -131,13 +131,12 @@ export const TEmpleadosIna = () => {
                 <div className="pagination-container">
                   <Button colorScheme='facebook' disabled={currentPage === 1} onClick={() => setCurrentPage(currentPage - 1)}>Anterior</Button>
                   &nbsp; <strong className='pag'>Página {currentPage} de {totalPages}</strong> &nbsp;
-                  <Button colorScheme='facebook' disabled={currentPage === totalPages} onClick={() => setCurrentPage(currentPage + 1)}>Siguiente</Button>
+                  <Button  colorScheme='facebook' disabled={currentPage === totalPages} onClick={() => setCurrentPage(currentPage + 1)}>Siguiente</Button>
 
                   <Select width={70} value={perPage} onChange={(e) => setPerPage(e.target.value)}>
                     <option value={5}>5</option>
                     <option value={10}>10</option>
                     <option value={20}>20</option>
-                    <option value={50}>50</option>
                     <option value={total}>Todos</option>
                   </Select>
                 </div>
