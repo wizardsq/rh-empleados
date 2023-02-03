@@ -364,7 +364,7 @@ export const FormEmp = ({ data }) => {
                 <Box>
                   <FormControl>
                     <FormLabel>Fecha nacimiento</FormLabel>
-                    <Input width='100%' type="text" placeholder='yyyy-mm-dd' value={Fecha || ""} onChange={((e) => setFecha(e.target.value))} />
+                    <Input width='100%' type="text" placeholder='2001-04-28' value={Fecha || ""} onChange={((e) => setFecha(e.target.value))} />
                   </FormControl>
                 </Box>
               </HStack>
