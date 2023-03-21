@@ -4,7 +4,7 @@ import {
   CardBody,
   Heading,
 } from '@chakra-ui/react'
-import { Estadisticas } from '../components/Estadisticas'
+import { Estadisticas } from '../components/Home/Stadistics'
 
 export const Home = () => {
  

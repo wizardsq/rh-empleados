@@ -1,4 +1,4 @@
-import { Rutas } from "./routes/Rutas";
+import { Rutas } from "./routes/Routes";
 import { BrowserRouter } from "react-router-dom";
 
 

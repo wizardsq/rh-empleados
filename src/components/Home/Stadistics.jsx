@@ -27,6 +27,7 @@ export const Estadisticas = () => {
         datos()
 
     }, [setData])
+    console.log(data)
 
     useEffect(() => {
         window.addEventListener('resize', () => setScreenSize(window.innerWidth));

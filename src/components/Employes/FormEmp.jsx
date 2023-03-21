@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react'
-import { CreatEmp, UpdateEmp, DeleteEmp, ActivEmp } from '../api/Empleados'
+import { CreatEmp, UpdateEmp, DeleteEmp, ActivEmp } from '../../services/EmployesService/Employes'
 import { FaArrowRight, FaArrowLeft } from 'react-icons/fa'
 import {
   Input,
@@ -11,8 +11,8 @@ import {
   Stack,
   useToast,
   Select
-}
-  from '@chakra-ui/react'
+} from '@chakra-ui/react'
+import '../../assets/css/form.css'
 export const FormEmp = ({ data }) => {
 
   //* estados de todas las variables del formulario
@@ -104,7 +104,7 @@ export const FormEmp = ({ data }) => {
     } else {
       setGetRol(false)
     }
-  })
+  }, [])
 
   const HandleSubmitEmp = (e) => {
     e.preventDefault();
@@ -138,7 +138,7 @@ export const FormEmp = ({ data }) => {
         })
         setTimeout(function () {
           window.location.reload()
-        }, 2000);
+        }, 1000);
 
       } else {
         toast({
@@ -230,29 +230,29 @@ export const FormEmp = ({ data }) => {
           rounded={'lg'}
           boxShadow={'lg'}
           width="200%"
-          height='704px'
+          height='685px'
           p={6}>
           {currentStep == 1 && (
             <>
-              <HStack py={2} spacing={5}>
-                <Box>
-                  <FormControl isRequired>
+              <HStack py={2} spacing={5} >
+                <Box >
+                  <FormControl isRequired style={{ borderColor: 'black' }}>
                     <FormLabel>Nomina</FormLabel>
-                    <Input width='100%' type="number" value={Nomina} onChange={((e) => setNomina(e.target.value))} />
+                    <Input width='100%' type="number" value={Nomina} onChange={((e) => setNomina(e.target.value.toUpperCase()))} />
                   </FormControl>
                 </Box>
 
                 <Box>
-                  <FormControl isRequired>
+                  <FormControl isRequired style={{ borderColor: 'black' }}>
                     <FormLabel>Nombre</FormLabel>
-                    <Input width='100%' type="text" value={Nombre} onChange={((e) => setNombre(e.target.value))} />
+                    <Input width='100%' type="text" value={Nombre} onChange={((e) => setNombre(e.target.value.toUpperCase()))} />
                   </FormControl>
                 </Box>
 
                 <Box>
-                  <FormControl>
+                  <FormControl style={{ borderColor: 'black' }}>
                     <FormLabel>Nombres</FormLabel>
-                    <Input width='100%' type="text" value={Nombres} onChange={((e) => setNombres(e.target.value))} />
+                    <Input width='100%' type="text" value={Nombres} onChange={((e) => setNombres(e.target.value.toUpperCase()))} />
                   </FormControl>
                 </Box>
 
@@ -261,21 +261,21 @@ export const FormEmp = ({ data }) => {
 
               <HStack py={1} spacing={5}>
                 <Box>
-                  <FormControl isRequired>
+                  <FormControl isRequired style={{ borderColor: 'black' }}>
                     <FormLabel>Primer Apellido</FormLabel>
-                    <Input width='100%' type="text" value={Primerapellido} onChange={((e) => setPrimerapellido(e.target.value))} />
+                    <Input width='100%' type="text" value={Primerapellido} onChange={((e) => setPrimerapellido(e.target.value.toUpperCase()))} />
                   </FormControl>
                 </Box>
 
                 <Box>
-                  <FormControl>
+                  <FormControl style={{ borderColor: 'black' }}>
                     <FormLabel>Segundo Apellido</FormLabel>
-                    <Input width='100%' type="text" value={Segundoapellido} onChange={((e) => setSegundoapellido(e.target.value))} />
+                    <Input width='100%' type="text" value={Segundoapellido} onChange={((e) => setSegundoapellido(e.target.value.toUpperCase()))} />
                   </FormControl>
                 </Box>
 
                 <Box>
-                  <FormControl>
+                  <FormControl style={{ borderColor: 'black' }}>
                     <FormLabel>Correo</FormLabel>
                     <Input width='100%' type="text" value={Correo} onChange={((e) => setCorreo(e.target.value))} />
                   </FormControl>
@@ -288,7 +288,7 @@ export const FormEmp = ({ data }) => {
                 <Box>
                   <FormControl>
                     <FormLabel>Genero</FormLabel>
-                    <Select width='100%' value={Genero} onChange={(e) => setGenero(e.target.value)}>
+                    <Select style={{ borderColor: 'black' }} width='105%' value={Genero} onChange={(e) => setGenero(e.target.value)}>
                       <option value="">Elige una Opción</option>
                       <option value='F'>F</option>
                       <option value='M'>M</option>
@@ -297,16 +297,16 @@ export const FormEmp = ({ data }) => {
                 </Box>
 
                 <Box>
-                  <FormControl>
+                  <FormControl style={{ borderColor: 'black' }}>
                     <FormLabel>Tipo contrato</FormLabel>
-                    <Input width='100%' type="text" value={Contrato} onChange={((e) => setContrato(e.target.value))} />
+                    <Input width='99%' type="text" value={Contrato} onChange={((e) => setContrato(e.target.value.toUpperCase()))} />
                   </FormControl>
                 </Box>
 
                 <Box>
-                  <FormControl>
+                  <FormControl style={{ borderColor: 'black' }}>
                     <FormLabel>Grado Academico</FormLabel>
-                    <Input width='100%' type="text" value={Grado} onChange={((e) => setGrado(e.target.value))} />
+                    <Input width='100%' type="text" value={Grado} onChange={((e) => setGrado(e.target.value.toUpperCase()))} />
                   </FormControl>
                 </Box>
 
@@ -317,7 +317,7 @@ export const FormEmp = ({ data }) => {
                 <Box>
                   <FormControl>
                     <FormLabel>Rectoria</FormLabel>
-                    <Select width='100%' value={Rectoria} onChange={((e) => setRectoria(e.target.value))}>
+                    <Select style={{ borderColor: 'black' }} width='105%' value={Rectoria} onChange={((e) => setRectoria(e.target.value))}>
                       <option value="">Elige una Opción</option>
                       <option value='RECTORIA'>RECTORIA</option>
                       <option value='RVRF'>RVRF</option>
@@ -329,17 +329,17 @@ export const FormEmp = ({ data }) => {
                 </Box>
 
                 <Box>
-                  <FormControl>
+                  <FormControl style={{ borderColor: 'black' }}>
                     <FormLabel>Facultad/Dep</FormLabel>
-                    <Input width='100%' type="text" value={Facultad} onChange={((e) => setFacultad(e.target.value))} />
+                    <Input width='100%' type="text" value={Facultad} onChange={((e) => setFacultad(e.target.value.toUpperCase()))} />
 
                   </FormControl>
                 </Box>
 
                 <Box>
-                  <FormControl>
+                  <FormControl style={{ borderColor: 'black' }}>
                     <FormLabel>Centro trabajo</FormLabel>
-                    <Input width='100%' type="text" value={Centro} onChange={((e) => setCentro(e.target.value))} />
+                    <Input width='100%' type="text" value={Centro} onChange={((e) => setCentro(e.target.value.toUpperCase()))} />
                   </FormControl>
                 </Box>
 
@@ -348,21 +348,21 @@ export const FormEmp = ({ data }) => {
 
               <HStack py={2} spacing={5}>
                 <Box>
-                  <FormControl>
+                  <FormControl style={{ borderColor: 'black' }}>
                     <FormLabel>Puesto</FormLabel>
-                    <Input width='100%' type="text" value={Puesto} onChange={((e) => setPuesto(e.target.value))} />
+                    <Input width='100%' type="text" value={Puesto} onChange={((e) => setPuesto(e.target.value.toUpperCase()))} />
                   </FormControl>
                 </Box>
 
                 <Box>
-                  <FormControl>
+                  <FormControl style={{ borderColor: 'black' }}>
                     <FormLabel>Jefe inmediato</FormLabel>
-                    <Input width='100%' type="text" value={Jefe} onChange={((e) => setJefe(e.target.value))} />
+                    <Input width='100%' type="text" value={Jefe} onChange={((e) => setJefe(e.target.value.toUpperCase()))} />
                   </FormControl>
                 </Box>
 
                 <Box>
-                  <FormControl>
+                  <FormControl style={{ borderColor: 'black' }}>
                     <FormLabel>Fecha nacimiento</FormLabel>
                     <Input width='100%' type="text" placeholder='2001-04-28' value={Fecha || ""} onChange={((e) => setFecha(e.target.value))} />
                   </FormControl>
@@ -371,30 +371,30 @@ export const FormEmp = ({ data }) => {
 
               <HStack py={2} >
                 <Box>
-                  <FormControl>
+                  <FormControl style={{ borderColor: 'black' }}>
                     <FormLabel>NSS</FormLabel>
-                    <Input width='95%' type="number" value={SeguroS || ""} onChange={((e) => setSeguroS(e.target.value))} />
+                    <Input width='89%' type="number" value={SeguroS || ""} onChange={((e) => setSeguroS(e.target.value))} />
                   </FormControl>
                 </Box>
                 <Box>
-                  <FormControl>
+                  <FormControl style={{ borderColor: 'black' }}>
                     <FormLabel>CURP</FormLabel>
-                    <Input width='100%' type="text" value={Curp || ""} onChange={((e) => setCurp(e.target.value))} />
+                    <Input width='90%' type="text" value={Curp || ""} onChange={((e) => setCurp(e.target.value))} />
                   </FormControl>
                 </Box>
 
                 <Box>
-                  <FormControl>
+                  <FormControl style={{ borderColor: 'black' }}>
                     <FormLabel>Nacionalidad</FormLabel>
-                    <Input width='100%' type="text" value={Nacionalidad} onChange={((e) => setNacionalidad(e.target.value))} />
+                    <Input width='90%' type="text" value={Nacionalidad} onChange={((e) => setNacionalidad(e.target.value.toUpperCase()))} />
                   </FormControl>
                 </Box>
 
                 <Box>
                   <FormControl>
                     <FormLabel>Estado civil</FormLabel>
-                    <Select width='98%' value={EstadoCivil} onChange={((e) => setEstadoCivil(e.target.value))}>
-                      <option value="">Elige una Opción</option>
+                    <Select style={{ borderColor: 'black', marginLeft: '-5%' }} width='105%' value={EstadoCivil} onChange={((e) => setEstadoCivil(e.target.value))}>
+                      <option value="">Elige uno</option>
                       <option value='SOLTERO'>Soltero</option>
                       <option value='CASADO'>Casado</option>
                       <option value='DIVORCIADO'>Divorciado</option>
@@ -407,9 +407,9 @@ export const FormEmp = ({ data }) => {
 
               <HStack py={2} spacing={5}>
                 <Box>
-                  <FormControl>
+                  <FormControl style={{ borderColor: 'black' }}>
                     <FormLabel>Direccion</FormLabel>
-                    <Input width='200%' type="text" value={Direccion} onChange={((e) => setDireccion(e.target.value))} />
+                    <Input width='180%' type="text" value={Direccion} onChange={((e) => setDireccion(e.target.value.toUpperCase()))} />
                   </FormControl>
                 </Box>
               </HStack>
@@ -420,21 +420,21 @@ export const FormEmp = ({ data }) => {
             <>
               <HStack py={2} spacing={5}>
                 <Box>
-                  <FormControl>
+                  <FormControl style={{ borderColor: 'black' }}>
                     <FormLabel>Telefono</FormLabel>
                     <Input width='100%' type="text" value={Telefono} onChange={((e) => setTelefono(e.target.value))} />
                   </FormControl>
                 </Box>
 
                 <Box>
-                  <FormControl>
+                  <FormControl style={{ borderColor: 'black' }}>
                     <FormLabel >Tipo contrato</FormLabel>
-                    <Input width='100%' type="text" value={TipoContrato} onChange={((e) => setTipoContrato(e.target.value))} />
+                    <Input width='100%' type="text" value={TipoContrato} onChange={((e) => setTipoContrato(e.target.value.toUpperCase()))} />
                   </FormControl>
                 </Box>
 
                 <Box>
-                  <FormControl isRequired>
+                  <FormControl isRequired style={{ borderColor: 'black' }}>
                     <FormLabel>Edad</FormLabel>
                     <Input width='89%' type="text" value={Edad || ""} onChange={((e) => setEdad(e.target.value))} />
                   </FormControl>
@@ -443,7 +443,7 @@ export const FormEmp = ({ data }) => {
                   data.Activo == 0 ? (
                     <>
                       <Box>
-                        <FormControl >
+                        <FormControl style={{ borderColor: 'black' }}>
                           <FormLabel >Años servicio</FormLabel>
                           <Input width='100%' type="text" value={Aservicio || ""} onChange={((e) => setAservicio(e.target.value))} />
                         </FormControl>
@@ -461,21 +461,21 @@ export const FormEmp = ({ data }) => {
                   data.Activo == 1 ? (
                     <>
                       <Box>
-                        <FormControl >
+                        <FormControl style={{ borderColor: 'black' }}>
                           <FormLabel >Años servicio</FormLabel>
                           <Input width='100%' type="text" value={Aservicio || ""} onChange={((e) => setAservicio(e.target.value))} />
                         </FormControl>
                       </Box>
                       <Box>
-                        <FormControl >
+                        <FormControl style={{ borderColor: 'black' }}>
                           <FormLabel >Fecha Retiro</FormLabel>
-                          <Input width='100%' type="text" value={FechaR} onChange={((e) => setFechaR(e.target.value))} />
+                          <Input width='100%' type="text" value={FechaR} onChange={((e) => setFechaR(e.target.value.toUpperCase()))} />
                         </FormControl>
                       </Box>
                       <Box>
-                        <FormControl >
+                        <FormControl style={{ borderColor: 'black' }}>
                           <FormLabel >Causa Retiro</FormLabel>
-                          <Input width='89%' type="text" value={CausaR} onChange={((e) => setCausaR(e.target.value))} />
+                          <Input width='89%' type="text" value={CausaR} onChange={((e) => setCausaR(e.target.value.toUpperCase()))} />
                         </FormControl>
                       </Box>
                     </>
@@ -487,68 +487,68 @@ export const FormEmp = ({ data }) => {
 
               <HStack py={2} spacing={5}>
                 <Box>
-                  <FormControl >
+                  <FormControl style={{ borderColor: 'black' }}>
                     <FormLabel>Licenciatura/Técnica</FormLabel>
-                    <Input width='100%' type="text" value={Nivel1} onChange={((e) => setNivel1(e.target.value))} />
+                    <Input width='100%' type="text" value={Nivel1} onChange={((e) => setNivel1(e.target.value.toUpperCase()))} />
                   </FormControl>
                 </Box>
 
                 <Box>
-                  <FormControl >
+                  <FormControl style={{ borderColor: 'black' }}>
                     <FormLabel>Nombre inst.</FormLabel>
-                    <Input width='100%' type="text" value={Institucion1} onChange={((e) => setInstitucion1(e.target.value))} />
+                    <Input width='100%' type="text" value={Institucion1} onChange={((e) => setInstitucion1(e.target.value.toUpperCase()))} />
                   </FormControl>
                 </Box>
 
                 <Box>
-                  <FormControl >
+                  <FormControl style={{ borderColor: 'black' }}>
                     <FormLabel>Nombre titulo</FormLabel>
-                    <Input width='118%' type="text" value={Titulo1} onChange={((e) => setTitulo1(e.target.value))} />
+                    <Input width='118%' type="text" value={Titulo1} onChange={((e) => setTitulo1(e.target.value.toUpperCase()))} />
                   </FormControl>
                 </Box>
               </HStack>
 
               <HStack py={2} spacing={5}>
                 <Box>
-                  <FormControl >
+                  <FormControl style={{ borderColor: 'black' }}>
                     <FormLabel>Maestria</FormLabel>
-                    <Input width='100%' type="text" value={Nivel2} onChange={((e) => setNivel2(e.target.value))} />
+                    <Input width='100%' type="text" value={Nivel2} onChange={((e) => setNivel2(e.target.value.toUpperCase()))} />
                   </FormControl>
                 </Box>
                 <Box>
-                  <FormControl  >
+                  <FormControl style={{ borderColor: 'black' }}>
                     <FormLabel>Nombre inst.</FormLabel>
-                    <Input width='100%' type="text" value={Institucion2} onChange={((e) => setInstitucion2(e.target.value))} />
+                    <Input width='100%' type="text" value={Institucion2} onChange={((e) => setInstitucion2(e.target.value.toUpperCase()))} />
                   </FormControl>
                 </Box>
 
                 <Box>
-                  <FormControl >
+                  <FormControl style={{ borderColor: 'black' }}>
                     <FormLabel>Nombre titulo</FormLabel>
-                    <Input width='118%' type="text" value={Titulo2} onChange={((e) => setTitulo2(e.target.value))} />
+                    <Input width='118%' type="text" value={Titulo2} onChange={((e) => setTitulo2(e.target.value.toUpperCase()))} />
                   </FormControl>
                 </Box>
               </HStack>
 
               <HStack py={2} spacing={5}>
                 <Box>
-                  <FormControl >
+                  <FormControl style={{ borderColor: 'black' }}>
                     <FormLabel>Doctorado</FormLabel>
-                    <Input width='100%' type="text" value={Nivel3} onChange={((e) => setNivel3(e.target.value))} />
+                    <Input width='100%' type="text" value={Nivel3} onChange={((e) => setNivel3(e.target.value.toUpperCase()))} />
                   </FormControl>
                 </Box>
 
                 <Box>
-                  <FormControl >
+                  <FormControl style={{ borderColor: 'black' }}>
                     <FormLabel>Nombre inst.</FormLabel>
-                    <Input width='100%' type="text" value={Institucion3} onChange={((e) => setInstitucion3(e.target.value))} />
+                    <Input width='100%' type="text" value={Institucion3} onChange={((e) => setInstitucion3(e.target.value.toUpperCase()))} />
                   </FormControl>
                 </Box>
 
                 <Box>
                   <FormControl >
                     <FormLabel>Nombre titulo</FormLabel>
-                    <Input width='118%' type="text" value={Titulo3} onChange={((e) => setTitulo3(e.target.value))} />
+                    <Input style={{ borderColor: 'black' }} width='118%' type="text" value={Titulo3} onChange={((e) => setTitulo3(e.target.value.toUpperCase()))} />
                   </FormControl>
                 </Box>
               </HStack>
@@ -592,7 +592,7 @@ export const FormEmp = ({ data }) => {
             </Button>
           )}
           {currentStep !== 2 && (
-            <Button type="button" style={{ marginTop: '3%', width: '29%', marginLeft: '70%' }} onClick={nextStep}>
+            <Button type="button" style={{ width: '29%', marginLeft: '70%' }} onClick={nextStep}>
               Siguiente pagina &nbsp;<FaArrowRight style={{ marginTop: '3%' }} />
             </Button>
           )}

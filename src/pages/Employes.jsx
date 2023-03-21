@@ -21,7 +21,7 @@ import {
 } from '@chakra-ui/react'
 import { SearchIcon, AddIcon } from '@chakra-ui/icons'
 import '../assets/css/empleados.css'
-import { FormEmp } from '../components/FormEmp'
+import { FormEmp } from '../components/Employes/FormEmp'
 
 
 export const Empleados = () => {
@@ -97,7 +97,7 @@ export const Empleados = () => {
                   </>
                 ) : (
                   <>
-                {data
+                {data 
                   .filter(emp => (showInactive ? emp.Activo == 1 : emp.Activo == 0)
                     && (emp.Nombre.toUpperCase().includes(searchTerm.toUpperCase())
                       || emp.Nombres.toUpperCase().includes(searchTerm.toUpperCase())
@@ -107,15 +107,14 @@ export const Empleados = () => {
                     <Button
                       colorScheme='withe'
                       color="black"
-                      key={emp.id}
                       _hover={{ bg: '#F5F5F5' }}
                       size="md"
                       onClick={() => ObtEmpleado(emp)}
                     >
-                      <ListItem style={{ textAlign: "justify" }}>
+                      <ListItem key={emp.id} style={{ textAlign: "justify" }}>
                         <Text>
-                            {emp.Nombre} {emp.Nombres}&nbsp; <br />
-                            {emp.Primer_apellido} { emp.Segundo_apellido}&nbsp;&nbsp;&nbsp;
+                            {emp.Nombre} {emp.Nombres} <br />
+                            {emp.Primer_apellido} { emp.Segundo_apellido}&nbsp;&nbsp;
                         </Text>
                       </ListItem>
                     </Button>

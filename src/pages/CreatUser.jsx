@@ -19,7 +19,7 @@ import {
   useToast
 } from '@chakra-ui/react';
 import { useState } from 'react';
-import {CreateUser} from '../api/User'
+import {CreateUser} from '../services/AuthService/Auth'
 import { ViewIcon, ViewOffIcon } from '@chakra-ui/icons';
 import '../assets/css/createus.css'
 export const CreateUs = () => {

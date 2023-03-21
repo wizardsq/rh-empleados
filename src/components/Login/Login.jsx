@@ -20,13 +20,13 @@ import { ViewIcon, ViewOffIcon } from '@chakra-ui/icons';
 
 
 // Importaciones locales
-import {LoginUser} from '../api/User'
+import {LoginUser} from '../../services/AuthService/Auth'
 //Importaciones de React
 import { useState } from 'react';
 //import { Navigate } from 'react-router-dom';
 
 
-const logo = process.env.PUBLIC_URL + '/img/' + 'logoum.jpg'
+const logo = `${process.env.PUBLIC_URL}/img/logoum.png`
 export const Login = () => {
   localStorage.setItem('auth', 'false')
   const [correo, setCorreo] = useState('')

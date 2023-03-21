@@ -105,13 +105,13 @@ export const Crearempleado = () => {
 
   return (
     <>
-      <Button key='exportexcel' rightIcon={<RiFileExcel2Line   size="24px" />} colorScheme='whatsapp' onClick={HandleExport}>Exportar a excel</Button>
+      <Button key='exportexcel' rightIcon={<RiFileExcel2Line size="24px" />} colorScheme='whatsapp' onClick={HandleExport}>Exportar a excel</Button>
       <TableContainer className='table'>
         <Table>
           <Thead>
-            <Th key='Genero'>
+            <Th key='Genero' >
               <FormLabel>Género :</FormLabel>
-              <Select width={110} name="Genero" onChange={handleFilterChange}>
+              <Select width={110} name="Genero" onChange={handleFilterChange} style={{ borderColor: 'black' }}>
                 <option value="">Todos</option>
                 <option value="M">Masculino</option>
                 <option value="F">Femenino</option>
@@ -119,7 +119,7 @@ export const Crearempleado = () => {
             </Th>
             <Th key='Fac_dept'>
               <FormLabel>Facultad:</FormLabel>
-              <Select width={110} name="Fac_dept" onChange={handleFilterChange}>
+              <Select width={110} name="Fac_dept" onChange={handleFilterChange} style={{ borderColor: 'black' }}>
                 <option value="">Todos</option>
                 <option value="ARTCOM">ARTCOM </option>
                 <option value="AUDITORIA INTERNA">AUDITORIA INTERNA</option>
@@ -149,7 +149,7 @@ export const Crearempleado = () => {
             </Th>
             <Th key='Fecha_Nacimiento'>
               <FormLabel>Fecha Nacimineto:</FormLabel>
-              <Select width={110} name="Fecha_Nacimiento" onChange={handleFilterChange}>
+              <Select width={110} name="Fecha_Nacimiento" onChange={handleFilterChange} style={{ borderColor: 'black' }}>
                 <option value="">Todos</option>
                 <option value="01"> 1</option>
                 <option value="02"> 2</option>
@@ -167,7 +167,7 @@ export const Crearempleado = () => {
             </Th>
             <Th key='A_servicios'>
               <FormLabel>Años servicio:</FormLabel>
-              <Select width={110} name="A_servicios" onChange={handleFilterChange}>
+              <Select width={110} name="A_servicios" onChange={handleFilterChange} style={{ borderColor: 'black' }}>
                 <option value="">Todos</option>
                 <option value="5">Mayor a 5</option>
                 <option value="15">Mayor a 15</option>
@@ -177,7 +177,7 @@ export const Crearempleado = () => {
             </Th>
             <Th key='Rec_dependiente'>
               <FormLabel> Rectoria:</FormLabel>
-              <Select width={110} name="Rec_dependiente" onChange={handleFilterChange}>
+              <Select width={110} name="Rec_dependiente" onChange={handleFilterChange} style={{ borderColor: 'black' }}>
                 <option value="">Todos</option>
                 <option value="RECTORIA">RECTORIA</option>
                 <option value="RVRF">RVRF</option>
@@ -188,7 +188,7 @@ export const Crearempleado = () => {
             </Th>
             <Th key='Grado_academico'>
               <FormLabel>Grado Academico:</FormLabel>
-              <Select width={110} name="Grado_academico" onChange={handleFilterChange}>
+              <Select width={110} name="Grado_academico" onChange={handleFilterChange} style={{ borderColor: 'black' }}>
                 <option value="">Todos</option>
                 <option value="PRIMARIA">Primaria </option>
                 <option value="PREPARATORIA">Preparatoria </option>
@@ -206,7 +206,7 @@ export const Crearempleado = () => {
             </Th>
             <Th key='T_cont_administrativo'>
               <FormLabel>Tipo contrato:</FormLabel>
-              <Select width={110} name="T_cont_administrativo" onChange={handleFilterChange}>
+              <Select width={110} name="T_cont_administrativo" onChange={handleFilterChange} style={{ borderColor: 'black' }}>
                 <option value="">Todos</option>
                 <option value="A">A</option>
                 <option value="ADMIN/CENTRAL">ADMIN/CENTRAL</option>

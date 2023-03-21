@@ -21,6 +21,12 @@ const sidebarNavItems = [
         section: 'usuarios'
     },
     {
+        display: 'Formato ',
+        icon: <BiPlusMedical size={23} />,
+        to: '/formato',
+        section: 'formato'
+    },
+    {
         display: 'Emp Act.',
         icon: <BiUserPlus size={33} />,
         to: '/createEmp',
@@ -38,9 +44,8 @@ const sidebarNavItems = [
         to: '/create',
         section: 'create'
     },
-
     {
-        icon: <MdExitToApp color='#FF2D00'  size={40} onClick={() => { localStorage.clear(); localStorage.setItem('auth', 'false'); window.location.reload() }} />,
+        icon: <MdExitToApp color='#FF2D00' style={{marginLeft: '-20%'}}  size={40} onClick={() => { localStorage.clear(); localStorage.setItem('auth', 'false'); window.location.reload() }} />,
         section: 'logout'
     },
 ]
@@ -76,10 +81,15 @@ export const Sidebar = ({collapsed, setCollapsed}) => {
                 return item;
             } else if (item.section == 'empleadosin' && (isAdmin || isLector)) {
                 return item
+            } else if (item.section == 'formato' && (isAdmin || isLector)) {
+                return item
             } else if (item.section == 'logout' && (isAdmin || isLector)) {
                 return item;
             } else if (item.section == 'create' && isAdmin) {
                 return item;
+            }
+            else{
+                return false;
             }
         });
     };
