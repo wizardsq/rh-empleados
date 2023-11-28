@@ -20,7 +20,7 @@ export const Estadisticas = () => {
     const [screensize, setScreenSize] = useState(window.innerWidth);
     useEffect(() => {
         const datos = async () => {
-            await axios.get(`${process.env.REACT_APP_URL}/info`).then(function (res) {
+            await axios.get(`http://localhost:3000/api/info`).then(function (res) {
                 setData(res.data)
             })
         }

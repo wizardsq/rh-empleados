@@ -16,7 +16,7 @@ import { FaArrowRight, FaArrowLeft } from 'react-icons/fa'
 
 
 export const FormatEmployes = ({ data }) => {
-
+    console.log(data.id)
     const logo = `${process.env.PUBLIC_URL}/img/logoum.png`
     const [document, setDocument] = useState({})
     const [Nomina, setNomina] = useState(data.Nomina ?? '')
@@ -34,7 +34,7 @@ export const FormatEmployes = ({ data }) => {
     const [Fecha, setFecha] = useState(data.Fecha_Nacimiento ?? '')
     const [SeguroS, setSeguroS] = useState(data.Num_seguro_s ?? '')
     const [currentStep, setCurrentStep] = useState(1)
-
+    
     useEffect(() => {
         setNomina(data.Nomina ?? '');
         setNombre(data.Nombre ?? '');
@@ -52,7 +52,7 @@ export const FormatEmployes = ({ data }) => {
         setTipoContrato(data.Tipo_contrato ?? '')
         setDocument(data.document)
     }, [data]);
-
+  
     const nombreCompleto = `${Nombre} ${Nombres} ${Primerapellido} ${Segundoapellido}`
 
     const previousStep = () => {

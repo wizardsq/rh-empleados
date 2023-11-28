@@ -1,8 +1,8 @@
 import axios from "axios";
 
 export async function LoginUser({ correo, passw }) {
-
-    await axios.post(`${process.env.REACT_APP_URL}/login`, {
+    console.log(process.env.REACT_APP_URL)
+    await axios.post(`http://localhost:3000/api/login`, {
         correo,
         passw
     })
@@ -22,7 +22,7 @@ export async function LoginUser({ correo, passw }) {
 
 export async function CreateUser({ Nombre, Correo, password, rol }) {
     let stat;
-    await axios.post(`${process.env.REACT_APP_URL}/crearuser`, {
+    await axios.post(`http://localhost:3000/api/crearuser`, {
         Nombre, Correo, password, rol
     })
 

@@ -11,44 +11,26 @@ import {
     useColorModeValue,
     Table
 } from '@chakra-ui/react'
-import { InsertDocument, UpdateDocument } from '../../services/DocumentService/Documents'
+import { GetDocuments, InsertDocument, UpdateDocument } from '../../services/DocumentService/Documents'
 import '../../assets/css/image.css'
-import {FaArrowLeft } from 'react-icons/fa'
+import { FaArrowLeft } from 'react-icons/fa'
 import { FormatPdf } from './FormatPdf'
-export const FormatDocument = ({ document, data, currentStep, previousStep }) => {
-    
+export const FormatDocument = ({ data, currentStep, previousStep }) => {
     const textColor = useColorModeValue('black', 'white')
-    
-    const [hasCheked, sethasCheked] = useState(false)
-    const [documentData, setDocument] = useState(document || {})
-    const [SolicitudEmp] = useState()
-    const [CopiaActaNacimiento] = useState()
-    const [CurriculumVit] = useState()
-    const [CopiaActaMatrimonio] = useState()
-    const [CopiaActaNaciConyuge_Hijos] = useState()
-    const [CopiaCertificadosPrim_Sec_Prep] = useState()
-    const [CopiaTituloLic] = useState()
-    const [CopiaCedulaLic] = useState()
-    const [CopiaTiutuloMae] = useState()
-    const [CopiaCedulaMae] = useState()
-    const [CopiaTituloDoc] = useState()
-    const [CopiaCedulaDoc] = useState()
-    const [CopiaCurp] = useState()
-    const [CopiaCredenElec] = useState()
-    const [CopiaCalidadMig_Pasaporte] = useState()
-    const [CopiaPreafiliacion_IMSS_SS] = useState()
-    const [Certificado_Medico] = useState()
-    const [Comprobante_Domicilio] = useState()
-    const [RFC] = useState()
-
+    const [doc, setDoc] = useState({})
+    const [documentData, setDocument] = useState(doc[0] || {})
     useEffect(() => {
-        setDocument(document || {})
-      }, [document])
-
-    useEffect(()=> {
-        const checked = Object.values(documentData).some((value) => value)
-        sethasCheked(checked)
-    }, [documentData])
+        GetDocuments({ id: data.id }).then((res) => {
+            setDoc({
+                ...res,
+                existeRegistro: res && Object.keys(res).length > 0 
+            });
+            setDocument(res);
+        })
+    }, [data.id])
+    useEffect(() => {
+        setDocument(doc[0] || {});
+    }, [doc]);
 
     const documentos = ["Solicitud de empleo", "Copia de acta de nacimiento", "Currículum Vitae",
         "Copia del acta de matrimonio o documento que acredite su Civ.", "Copia del acta de nacimiento del cónyuge y de los hijos",
@@ -64,7 +46,9 @@ export const FormatDocument = ({ document, data, currentStep, previousStep }) =>
             ...prevDocument,
             [key]: value,
         }));
-    };
+    }
+
+    //console.log(documentData)
     const handleUpdate = () => {
         const id = documentData.id
         const ID_emp = data.id
@@ -72,20 +56,16 @@ export const FormatDocument = ({ document, data, currentStep, previousStep }) =>
         UpdateDocument({
             id,
             ...documentData,
-            ID_emp
         })
     }
 
     const handleSubmit = () => {
         const ID_emp = data.id
         InsertDocument({
-            SolicitudEmp, CopiaActaNacimiento, CurriculumVit, CopiaActaMatrimonio, CopiaActaNaciConyuge_Hijos, CopiaCertificadosPrim_Sec_Prep,
-            CopiaTituloLic, CopiaCedulaLic, CopiaTiutuloMae, CopiaCedulaMae, CopiaTituloDoc, CopiaCedulaDoc, CopiaCurp, CopiaCredenElec, CopiaCalidadMig_Pasaporte,
-            CopiaPreafiliacion_IMSS_SS, Certificado_Medico, Comprobante_Domicilio, RFC, ID_emp
+            ...documentData,
+            ID_emp
         })
     }
-
-    
     return (
         <>
             <Heading py={7} px={5} as='h2' size='md'> Documentos de los empleados </Heading>
@@ -106,7 +86,7 @@ export const FormatDocument = ({ document, data, currentStep, previousStep }) =>
                             </Flex>
 
                             {documentos.map((nombre, index) => (
-                                <Flex  key={index} direction="column">
+                                <Flex key={index} direction="column">
                                     <Text marginTop={5}>
                                         {nombre}
                                     </Text>
@@ -128,85 +108,85 @@ export const FormatDocument = ({ document, data, currentStep, previousStep }) =>
                             </Flex>
 
                             <Flex direction='column' marginTop='5%' >
-                                <Checkbox style={{ borderColor: 'black' }} size='lg' isChecked={  documentData.SolicitudEmp } onChange={(e) => {handleCheckboxChange("SolicitudEmp", e.target.checked)}} colorScheme='green' />
+                                <Checkbox style={{ borderColor: 'black' }} size='lg' isChecked={documentData?.SolicitudEmp} onChange={(e) => { handleCheckboxChange("SolicitudEmp", e.target.checked) }} colorScheme='green' />
                             </Flex>
 
                             <Flex direction='column'>
-                                <Checkbox style={{ borderColor: 'black' }} size='lg' isChecked={ documentData.CopiaActaNacimiento } onChange={(e) => {handleCheckboxChange("CopiaActaNacimiento", e.target.checked)}} marginTop={5} colorScheme='green' />
+                                <Checkbox style={{ borderColor: 'black' }} size='lg' isChecked={documentData?.CopiaActaNacimiento} onChange={(e) => { handleCheckboxChange("CopiaActaNacimiento", e.target.checked) }} marginTop={5} colorScheme='green' />
                             </Flex>
 
                             <Flex direction='column'>
-                                <Checkbox style={{ borderColor: 'black' }} size='lg' isChecked={ documentData.CurriculumVit } onChange={(e) => {handleCheckboxChange("CurriculumVit", e.target.checked)}} marginTop={5} colorScheme='green' />
+                                <Checkbox style={{ borderColor: 'black' }} size='lg' isChecked={documentData?.CurriculumVit} onChange={(e) => { handleCheckboxChange("CurriculumVit", e.target.checked) }} marginTop={5} colorScheme='green' />
                             </Flex>
 
                             <Flex direction='column'>
-                                <Checkbox style={{ borderColor: 'black' }} size='lg' isChecked={ documentData.CopiaActaMatrimonio } onChange={(e) => {handleCheckboxChange("CopiaActaMatrimonio", e.target.checked)}} marginTop={5} colorScheme='green' />
+                                <Checkbox style={{ borderColor: 'black' }} size='lg' isChecked={documentData?.CopiaActaMatrimonio} onChange={(e) => { handleCheckboxChange("CopiaActaMatrimonio", e.target.checked) }} marginTop={5} colorScheme='green' />
                             </Flex>
                             <Flex direction='column'>
-                                <Checkbox style={{ borderColor: 'black' }} size='lg' isChecked={ documentData.CopiaActaNaciConyuge_Hijos } onChange={(e) => {handleCheckboxChange("CopiaActaNaciConyuge_Hijos", e.target.checked)}} marginTop={5} colorScheme='green' />
-                            </Flex>
-
-                            <Flex direction='column'>
-                                <Checkbox style={{ borderColor: 'black' }} size='lg' isChecked={ documentData.CopiaCertificadosPrim_Sec_Prep } onChange={(e) => {handleCheckboxChange("CopiaCertificadosPrim_Sec_Prep", e.target.checked)}} marginTop={5} colorScheme='green' />
+                                <Checkbox style={{ borderColor: 'black' }} size='lg' isChecked={documentData?.CopiaActaNaciConyuge_Hijos} onChange={(e) => { handleCheckboxChange("CopiaActaNaciConyuge_Hijos", e.target.checked) }} marginTop={5} colorScheme='green' />
                             </Flex>
 
                             <Flex direction='column'>
-                                <Checkbox style={{ borderColor: 'black' }} size='lg' isChecked={ documentData.CopiaTituloLic } onChange={(e) => {handleCheckboxChange("CopiaTituloLic", e.target.checked)}} marginTop={5} colorScheme='green' />
+                                <Checkbox style={{ borderColor: 'black' }} size='lg' isChecked={documentData?.CopiaCertificadosPrim_Sec_Prep} onChange={(e) => { handleCheckboxChange("CopiaCertificadosPrim_Sec_Prep", e.target.checked) }} marginTop={5} colorScheme='green' />
                             </Flex>
 
                             <Flex direction='column'>
-                                <Checkbox style={{ borderColor: 'black' }} size='lg' isChecked={ documentData.CopiaCedulaLic } onChange={(e) => {handleCheckboxChange("CopiaCedulaLic", e.target.checked)}} marginTop={5} colorScheme='green' />
+                                <Checkbox style={{ borderColor: 'black' }} size='lg' isChecked={documentData?.CopiaTituloLic} onChange={(e) => { handleCheckboxChange("CopiaTituloLic", e.target.checked) }} marginTop={5} colorScheme='green' />
                             </Flex>
 
                             <Flex direction='column'>
-                                <Checkbox style={{ borderColor: 'black' }} size='lg' isChecked={ documentData.CopiaTiutuloMae } onChange={(e) => {handleCheckboxChange("CopiaTiutuloMae", e.target.checked)}} marginTop={5} colorScheme='green' />
+                                <Checkbox style={{ borderColor: 'black' }} size='lg' isChecked={documentData?.CopiaCedulaLic} onChange={(e) => { handleCheckboxChange("CopiaCedulaLic", e.target.checked) }} marginTop={5} colorScheme='green' />
                             </Flex>
 
                             <Flex direction='column'>
-                                <Checkbox style={{ borderColor: 'black' }} size='lg' isChecked={ documentData.CopiaCedulaMae } onChange={(e) => {handleCheckboxChange("CopiaCedulaMae", e.target.checked)}} marginTop={5} colorScheme='green' />
+                                <Checkbox style={{ borderColor: 'black' }} size='lg' isChecked={documentData?.CopiaTiutuloMae} onChange={(e) => { handleCheckboxChange("CopiaTiutuloMae", e.target.checked) }} marginTop={5} colorScheme='green' />
                             </Flex>
 
                             <Flex direction='column'>
-                                <Checkbox style={{ borderColor: 'black' }} size='lg' isChecked={ documentData.CopiaTituloDoc } onChange={(e) => {handleCheckboxChange("CopiaTituloDoc", e.target.checked)}} marginTop={5} colorScheme='green' />
+                                <Checkbox style={{ borderColor: 'black' }} size='lg' isChecked={documentData?.CopiaCedulaMae} onChange={(e) => { handleCheckboxChange("CopiaCedulaMae", e.target.checked) }} marginTop={5} colorScheme='green' />
                             </Flex>
 
                             <Flex direction='column'>
-                                <Checkbox style={{ borderColor: 'black' }} size='lg' isChecked={ documentData.CopiaCedulaDoc } onChange={(e) => {handleCheckboxChange("CopiaCedulaDoc", e.target.checked)}} marginTop={5} colorScheme='green' />
+                                <Checkbox style={{ borderColor: 'black' }} size='lg' isChecked={documentData?.CopiaTituloDoc} onChange={(e) => { handleCheckboxChange("CopiaTituloDoc", e.target.checked) }} marginTop={5} colorScheme='green' />
                             </Flex>
 
                             <Flex direction='column'>
-                                <Checkbox style={{ borderColor: 'black' }} size='lg' isChecked={ documentData.CopiaCurp } onChange={(e) => {handleCheckboxChange("CopiaCurp", e.target.checked)}} marginTop={5} colorScheme='green' />
+                                <Checkbox style={{ borderColor: 'black' }} size='lg' isChecked={documentData?.CopiaCedulaDoc} onChange={(e) => { handleCheckboxChange("CopiaCedulaDoc", e.target.checked) }} marginTop={5} colorScheme='green' />
                             </Flex>
 
                             <Flex direction='column'>
-                                <Checkbox style={{ borderColor: 'black' }} size='lg' isChecked={ documentData.CopiaCredenElec } onChange={(e) => {handleCheckboxChange("CopiaCredenElec", e.target.checked)}} marginTop={5} colorScheme='green' />
+                                <Checkbox style={{ borderColor: 'black' }} size='lg' isChecked={documentData?.CopiaCurp} onChange={(e) => { handleCheckboxChange("CopiaCurp", e.target.checked) }} marginTop={5} colorScheme='green' />
                             </Flex>
 
                             <Flex direction='column'>
-                                <Checkbox style={{ borderColor: 'black' }} size='lg' isChecked={ documentData.CopiaCalidadMig_Pasaporte } onChange={(e) => {handleCheckboxChange("CopiaCalidadMig_Pasaporte", e.target.checked)}} marginTop={5} colorScheme='green' />
+                                <Checkbox style={{ borderColor: 'black' }} size='lg' isChecked={documentData?.CopiaCredenElec} onChange={(e) => { handleCheckboxChange("CopiaCredenElec", e.target.checked) }} marginTop={5} colorScheme='green' />
                             </Flex>
 
                             <Flex direction='column'>
-                                <Checkbox style={{ borderColor: 'black' }} size='lg' isChecked={ documentData.CopiaPreafiliacion_IMSS_SS } onChange={(e) => {handleCheckboxChange("CopiaPreafiliacion_IMSS_SS", e.target.checked)}} marginTop={5} colorScheme='green' />
+                                <Checkbox style={{ borderColor: 'black' }} size='lg' isChecked={documentData?.CopiaCalidadMig_Pasaporte} onChange={(e) => { handleCheckboxChange("CopiaCalidadMig_Pasaporte", e.target.checked) }} marginTop={5} colorScheme='green' />
                             </Flex>
 
                             <Flex direction='column'>
-                                <Checkbox style={{ borderColor: 'black' }} size='lg' isChecked={ documentData.Certificado_Medico } onChange={(e) => {handleCheckboxChange("Certificado_Medico", e.target.checked)}} marginTop={5} colorScheme='green' />
+                                <Checkbox style={{ borderColor: 'black' }} size='lg' isChecked={documentData?.CopiaPreafiliacion_IMSS_SS} onChange={(e) => { handleCheckboxChange("CopiaPreafiliacion_IMSS_SS", e.target.checked) }} marginTop={5} colorScheme='green' />
                             </Flex>
 
                             <Flex direction='column'>
-                                <Checkbox style={{ borderColor: 'black' }} size='lg' isChecked={ documentData.Comprobante_Domicilio } onChange={(e) => {handleCheckboxChange("Comprobante_Domicilio", e.target.checked)}} marginTop={5} colorScheme='green' />
+                                <Checkbox style={{ borderColor: 'black' }} size='lg' isChecked={documentData?.Certificado_Medico} onChange={(e) => { handleCheckboxChange("Certificado_Medico", e.target.checked) }} marginTop={5} colorScheme='green' />
                             </Flex>
 
                             <Flex direction='column'>
-                                <Checkbox style={{ borderColor: 'black' }} size='lg' isChecked={ documentData.RFC } onChange={(e) => {handleCheckboxChange("RFC", e.target.checked)}} marginTop={5} colorScheme='green' />
+                                <Checkbox style={{ borderColor: 'black' }} size='lg' isChecked={documentData?.Comprobante_Domicilio} onChange={(e) => { handleCheckboxChange("Comprobante_Domicilio", e.target.checked) }} marginTop={5} colorScheme='green' />
+                            </Flex>
+
+                            <Flex direction='column'>
+                                <Checkbox style={{ borderColor: 'black' }} size='lg' isChecked={documentData?.RFC} onChange={(e) => { handleCheckboxChange("RFC", e.target.checked) }} marginTop={5} colorScheme='green' />
                             </Flex>
 
                         </Td>
                     </Tr>
                 </Table>
 
-                {currentStep == 3 && currentStep !== 1 &&(
+                {currentStep == 3 && currentStep !== 1 && (
                     <Button type="button" style={{ marginTop: '3%', width: '20%', marginLeft: '2%' }} onClick={previousStep}>
                         <FaArrowLeft style={{ marginTop: '1%' }} />&nbsp; Pagina anterior
                     </Button>
@@ -215,14 +195,13 @@ export const FormatDocument = ({ document, data, currentStep, previousStep }) =>
                 <FormatPdf data={data} document={documentData} />
 
             </Box>
-        {
-            hasCheked ? (
-                <Button mr={2} ml={2} mb={2} onClick={handleUpdate} colorScheme='blue'>Actualizar información </Button>
-            ) : 
-            (
-                <Button mb={3} mr={2} ml={2} onClick={handleSubmit} colorScheme='green'>Agregar Información</Button>
-            )
-        }
+            {
+                doc.existeRegistro ? (
+                    <Button mr={2} ml={2} mb={2} onClick={handleUpdate} colorScheme='blue'>Actualizar información </Button>
+                ) : (
+                    <Button mb={3} mr={2} ml={2} onClick={handleSubmit} colorScheme='green'>Agregar Información</Button>
+                )
+            }
         </>
 
     )

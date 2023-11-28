@@ -43,7 +43,7 @@ export const Empleados = () => {
     }
     const user = async () => {
       setIsLoading(true)
-      await axios.get(`${process.env.REACT_APP_URL}/Allempleados`).then(function (res) {
+      await axios.get(`http://localhost:3000/api/Allempleados`).then(function (res) {
         setData(res.data)
         setIsLoading(false)
       })
@@ -110,6 +110,7 @@ export const Empleados = () => {
                       _hover={{ bg: '#F5F5F5' }}
                       size="md"
                       onClick={() => ObtEmpleado(emp)}
+                      key={emp.id}
                     >
                       <ListItem key={emp.id} style={{ textAlign: "justify" }}>
                         <Text>

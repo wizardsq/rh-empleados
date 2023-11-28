@@ -1,17 +1,12 @@
 import axios from 'axios'
 
 
-
-//import {ToastContainer ,toast } from 'react-toastify';
-
-
-
 export async function CreatEmp({ Nomina, Nombre, Nombres, Primerapellido, Segundoapellido, Correo, Genero, Contrato, Grado, Rectoria,
     Facultad, Centro, Puesto, Jefe, Fecha, SeguroS, Curp, Nacionalidad, EstadoCivil, Direccion, Telefono,
     Nivel1, Institucion1, Titulo1, Nivel2, Institucion2, Titulo2, Nivel3, Institucion3, Titulo3, TipoContrato,
     Edad, Aservicio
 }) {
-    await axios.post(`${process.env.REACT_APP_URL}/createmp`, {
+    await axios.post(`http://localhost:3000/api/createmp`, {
         Nomina, Nombre, Nombres, Primerapellido, Segundoapellido, Correo, Genero, Contrato, Grado, Rectoria,
         Facultad, Centro, Puesto, Jefe, Fecha, SeguroS, Curp, Nacionalidad, EstadoCivil, Direccion, Telefono,
         Nivel1, Institucion1, Titulo1, Nivel2, Institucion2, Titulo2, Nivel3, Institucion3, Titulo3, TipoContrato,
@@ -34,7 +29,7 @@ export async function UpdateEmp({ id, Nomina, Nombre, Nombres, Primerapellido, S
     Edad, Aservicio, FechaR, CausaR
 }) {
     let stat;
-    await axios.put(`${process.env.REACT_APP_URL}/updateEmp/${id}`, {
+    await axios.put(`http://localhost:3000/api/updateEmp/${id}`, {
         Nomina, Nombre, Nombres, Primerapellido, Segundoapellido, Correo, Genero, Contrato, Grado, Rectoria,
         Facultad, Centro, Puesto, Jefe, Fecha, SeguroS, Curp, Nacionalidad, EstadoCivil, Direccion, Telefono,
         Nivel1, Institucion1, Titulo1, Nivel2, Institucion2, Titulo2, Nivel3, Institucion3, Titulo3, TipoContrato,
@@ -53,7 +48,7 @@ export async function UpdateEmp({ id, Nomina, Nombre, Nombres, Primerapellido, S
 
 export async function DeleteEmp({id, Activo}){
     let stat;
-    await axios.put(`${process.env.REACT_APP_URL}/deleteEmp/${id}`, {
+    await axios.put(`http://localhost:3000/api/deleteEmp/${id}`, {
         Activo
     }).then(function (res) {
         if(res.status == 200){
@@ -67,7 +62,7 @@ export async function DeleteEmp({id, Activo}){
 
 export async function ActivEmp({id, Activo}){
     let stat
-    await axios.put(`${process.env.REACT_APP_URL}/activEmp/${id}`, {
+    await axios.put(`http://localhost:3000/api/activEmp/${id}`, {
         Activo
     }).then(function (res) {
         console.log(res.status)

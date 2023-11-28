@@ -27,7 +27,7 @@ export const Formato = () => {
   useEffect(() => {
     const user = async () => {
         setIsLoading(true)
-      await axios.get(`${process.env.REACT_APP_URL}/Allempleados`).then(function (res) {
+      await axios.get(`http://localhost:3000/api/Allempleados`).then(function (res) {
         setData(res.data)
         setIsLoading(false)
       })

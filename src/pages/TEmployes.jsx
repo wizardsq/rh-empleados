@@ -37,7 +37,7 @@ export const Crearempleado = () => {
 
   useEffect(() => {
     const user = async () => {
-      await axios.get(`${process.env.REACT_APP_URL}/empleados`).then(function (res) {
+      await axios.get(`http://localhost:3000/api/empleados`).then(function (res) {
         setData(res.data)
         setFilteredData(res.data)
         setHeader(Object.keys(res.data[0]))
